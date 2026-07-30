@@ -1,0 +1,325 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\avatar\\avat.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar\\avat.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\bottombanner1.png",
+      "PackagePath": "staticwebassets\\images\\banner\\bottombanner1.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\bottombanner2.png",
+      "PackagePath": "staticwebassets\\images\\banner\\bottombanner2.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\leftbanner1.png",
+      "PackagePath": "staticwebassets\\images\\banner\\leftbanner1.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\leftbanner2.png",
+      "PackagePath": "staticwebassets\\images\\banner\\leftbanner2.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\leftbanner3.png",
+      "PackagePath": "staticwebassets\\images\\banner\\leftbanner3.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\leftbanner4.png",
+      "PackagePath": "staticwebassets\\images\\banner\\leftbanner4.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\topbanner.png",
+      "PackagePath": "staticwebassets\\images\\banner\\topbanner.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\banner\\topbanner2.png",
+      "PackagePath": "staticwebassets\\images\\banner\\topbanner2.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\banner_banphim.png",
+      "PackagePath": "staticwebassets\\images\\features\\banner_banphim.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\banner_chuot.png",
+      "PackagePath": "staticwebassets\\images\\features\\banner_chuot.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\banner_laptop.png",
+      "PackagePath": "staticwebassets\\images\\features\\banner_laptop.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\banner_manhinh.png",
+      "PackagePath": "staticwebassets\\images\\features\\banner_manhinh.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\banner_tainghe.png",
+      "PackagePath": "staticwebassets\\images\\features\\banner_tainghe.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\f1.png",
+      "PackagePath": "staticwebassets\\images\\features\\f1.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\f2.png",
+      "PackagePath": "staticwebassets\\images\\features\\f2.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\f3.png",
+      "PackagePath": "staticwebassets\\images\\features\\f3.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\f4.png",
+      "PackagePath": "staticwebassets\\images\\features\\f4.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\f5.png",
+      "PackagePath": "staticwebassets\\images\\features\\f5.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\features\\f6.png",
+      "PackagePath": "staticwebassets\\images\\features\\f6.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\icons\\Account.png",
+      "PackagePath": "staticwebassets\\images\\icons\\Account.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\icons\\Saving.png",
+      "PackagePath": "staticwebassets\\images\\icons\\Saving.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\icons\\Support.png",
+      "PackagePath": "staticwebassets\\images\\icons\\Support.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\logo\\Logo.png",
+      "PackagePath": "staticwebassets\\images\\logo\\Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\AKKO_3098B.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\AKKO_3098B.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\AKKO_5087S.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\AKKO_5087S.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\AKKO_MOD007B.png",
+      "PackagePath": "staticwebassets\\images\\product\\AKKO_MOD007B.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\ASUS_ROG_Keris.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\ASUS_ROG_Keris.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\ASUS_ROG_Strix_G16.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\ASUS_ROG_Strix_G16.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\ASUS_TUFGaming_M4.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\ASUS_TUFGaming_M4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\ASUS_VivoBook15.png",
+      "PackagePath": "staticwebassets\\images\\product\\ASUS_VivoBook15.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\ASUS_Zenbook14.png",
+      "PackagePath": "staticwebassets\\images\\product\\ASUS_Zenbook14.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\AULA_F75.png",
+      "PackagePath": "staticwebassets\\images\\product\\AULA_F75.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\AULA_F87Pro.png",
+      "PackagePath": "staticwebassets\\images\\product\\AULA_F87Pro.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\AULA_S99.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\AULA_S99.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Acer_Aspire5.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Acer_Aspire5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Acer_Nitro5.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Acer_Nitro5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Asus_ROG_DeltaS.png",
+      "PackagePath": "staticwebassets\\images\\product\\Asus_ROG_DeltaS.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Asus_TUF_GamingH3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Asus_TUF_GamingH3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Dell_Inspiron15.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Dell_Inspiron15.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Dell_XPS15.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Dell_XPS15.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Gigabyte_G27QC.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Gigabyte_G27QC.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Gigabyte_M27Q.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Gigabyte_M27Q.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\HP_Pavilion15.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\HP_Pavilion15.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\HP_Spectre_x360.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\HP_Spectre_x360.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\HyperX_Cloud2.png",
+      "PackagePath": "staticwebassets\\images\\product\\HyperX_Cloud2.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\HyperX_Cloud_Alpha.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\HyperX_Cloud_Alpha.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\HyperX_Cloud_Alpha_Wireless.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\HyperX_Cloud_Alpha_Wireless.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\HyperX_Pulsefire_Core.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\HyperX_Pulsefire_Core.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\HyperX_Pulsefire_Haste2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\HyperX_Pulsefire_Haste2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Keychron_K2Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Keychron_K2Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Keychron_K8Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Keychron_K8Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Keychron_Q3Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Keychron_Q3Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\LG_27UK850.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\LG_27UK850.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\LG_Gram14.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\LG_Gram14.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\LG_UltraGear.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\LG_UltraGear.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\LG_UltraWide.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\LG_UltraWide.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Lenovo_IdeaPad_Slim5.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Lenovo_IdeaPad_Slim5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Lenovo_ThinkPad_X1_Carbon.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Lenovo_ThinkPad_X1_Carbon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Logitech_G304_Lightspeed.png",
+      "PackagePath": "staticwebassets\\images\\product\\Logitech_G304_Lightspeed.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Logitech_G502X_Plus.png",
+      "PackagePath": "staticwebassets\\images\\product\\Logitech_G502X_Plus.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Logitech_GProX.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Logitech_GProX.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Logitech_MX_Master3S.png",
+      "PackagePath": "staticwebassets\\images\\product\\Logitech_MX_Master3S.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\MSI_MAG274QRF.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\MSI_MAG274QRF.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\MSI_Modern14.png",
+      "PackagePath": "staticwebassets\\images\\product\\MSI_Modern14.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\MSI_Optix.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\MSI_Optix.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\MSI_Prestige16.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\MSI_Prestige16.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\MSI_Sword15.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\MSI_Sword15.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\MSI_Titan_GT77_HX.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\MSI_Titan_GT77_HX.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Razer_BlackSharkV2Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Razer_BlackSharkV2Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Razer_KrakenV3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Razer_KrakenV3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Razer_OpusX.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Razer_OpusX.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Razer_Viper_V3Pro.png",
+      "PackagePath": "staticwebassets\\images\\product\\Razer_Viper_V3Pro.png"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\Razor_DeathAdder_V3HyperSpeed.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Razor_DeathAdder_V3HyperSpeed.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\ViewSonic_VX2758.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\ViewSonic_VX2758.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HBDELL\\OneDrive\\Documents\\FPTU\\SU2026\\Ecommerce\\Ecommerce.API\\wwwroot\\images\\product\\ViewSonic_VX3276.png",
+      "PackagePath": "staticwebassets\\images\\product\\ViewSonic_VX3276.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Ecommerce.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Ecommerce.API.props",
+      "PackagePath": "build\\Ecommerce.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Ecommerce.API.props",
+      "PackagePath": "buildMultiTargeting\\Ecommerce.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Ecommerce.API.props",
+      "PackagePath": "buildTransitive\\Ecommerce.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
