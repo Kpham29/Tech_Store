@@ -1,0 +1,119 @@
+
+<div class="bg-gray-100">
+    <div class="bg-[#eef2ff] text-[#1c1c1c] text-xs py-2 px-6 flex justify-between items-center" style="height:32px">
+        <span>Mon-Thu: <strong>9:00 AM – 5:30 PM</strong> ▾</span>
+        <span>
+            Visit our showroom in 1234 Street Address City Address, 1234
+            <a href="/Contact" class="underline font-semibold ml-1 text-[#2563eb]">Contact Us</a>
+        </span>
+        <div class="flex items-center gap-4">
+            <span>Call Us: 0923-199-868</span>
+            <a href="#" class="hover:text-[#2563eb]"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="hover:text-[#2563eb]"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="hover:text-[#2563eb]"><i class="bi bi-twitter-x"></i></a>
+        </div>
+    </div>
+
+    <nav class="bg-white shadow-sm border-b border-gray-200 relative" style="height:64px; z-index:100">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center h-full gap-6">
+
+            <a href="/" class="flex-shrink-0">
+                <div class="w-10 h-10 bg-[#ececec] rounded-lg flex items-center justify-center">
+                    <img src="~/images/logo/Logo.png" class="w-full h-full object-cover" />
+                </div>
+            </a>
+
+            <ul class="flex items-center gap-1 text-sm font-medium text-gray-700">
+
+                <li class="nav-item relative" style="height:64px; display:flex; align-items:center;">
+                    <a href="/Catalog" class="px-3 py-2 rounded hover:text-blue-600 flex items-center gap-1 whitespace-nowrap">
+                        Catalog
+                        <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </a>
+
+                    <div class="mega-dropdown">
+                        <div class="dropdown-inner">
+
+                            <div class="col-category">
+                                <div class="col-title">Category</div>
+                                
+                                <div class="category-item">
+                                    <a href="/Catalog?cateId=1" class="flex items-center justify-between px-4 py-2.5 text-sm text-gray-800 transition-colors">
+                                        Laptops
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-brand-placeholder"></div>
+
+                        </div>
+                    </div>
+                </li>
+
+                <li><a href="/Blog" class="px-3 py-2 hover:text-blue-600 whitespace-nowrap">Blog</a></li>
+                <li><a href="/Contact" class="px-3 py-2 hover:text-blue-600 whitespace-nowrap">Contact us</a></li>
+            </ul>
+
+            <div class="flex-1 flex justify-center px-4">
+                <form class="flex items-center pl-[15px] w-full" action="/Catalog" method="get">
+                    <input type="text" name="keyword" placeholder="What product are you looking for?" class="text-[16px] h-[36px] border border-solid border-[#d8d8d8] text-[#b2b2b2] pl-5 focus: outline-none w-[70%] rounded-xl" />
+                    <button type="submit" class="text-sm text-white font-semibold bg-blue-600 hover:bg-blue-700 px-5 h-full rounded-xl border-none transition whitespace-nowrap ml-2">
+                        Search
+                    </button>
+                </form>
+            </div>
+
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <a href="#" class="border border-blue-600 text-blue-600 text-sm font-medium px-4 py-1.5 rounded-full hover:bg-blue-50 transition whitespace-nowrap">
+                    Our Deals
+                </a>
+                <button class="text-gray-500 hover:text-gray-800 text-lg">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <button class="relative text-gray-500 hover:text-gray-800 text-lg">
+                    <i class="bi bi-cart"></i>
+                    <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+                </button>
+                
+                <!-- NOTE: Xử lý hiển thị UI Đăng nhập / Đã đăng nhập (Đã comment code logic) -->
+                <!--
+                @* @if (User.Identity.IsAuthenticated) { *@
+                    <div class="relative group">
+                        <button class="w-9 h-9 rounded-full overflow-hidden border-[1.5px] border-blue-600 flex items-center justify-center text-blue-600 text-lg">
+                            <i class="bi bi-person-circle"></i>
+                        </button>
+
+                        <div class="absolute right-0 top-full mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                            <div class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100 truncate">
+                                @* @User.Identity.Name *@
+                            </div>
+                            <a href="/Profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                                Tài khoản của tôi
+                            </a>
+                            <a href="/Orders" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                                Đơn hàng
+                            </a>
+                            <a href="/Auth/Logout" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-50 rounded-b-lg">
+                                Đăng xuất
+                            </a>
+                        </div>
+                    </div>
+                @* } else { *@
+                -->
+                    <div class="relative inline-flex h-9 border-[1.5px] border-blue-600 rounded-full overflow-hidden isolate">
+                        <a href="/Auth/Register" class="peer/register order-2 relative z-10 w-[88px] flex items-center justify-center text-sm font-semibold text-blue-600 hover:text-white transition-colors duration-300">
+                            Register
+                        </a>
+                        <a href="/Auth/Login" class="order-1 relative z-10 w-[88px] flex items-center justify-center text-sm font-semibold text-white peer-hover/register:text-blue-600 transition-colors duration-300">
+                            Login
+                        </a>
+                        <div class="absolute -top-px -left-px w-1/2 h-[calc(100%+2px)] bg-blue-600 rounded-full -z-10 transition-all duration-300 ease-in-out peer-hover/register:left-[calc(50%+1px)]"></div>
+                    </div>
+                <!-- @* } *@ -->
+            </div>
+        </div>
+    </nav>
+</div>

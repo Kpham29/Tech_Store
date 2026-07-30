@@ -1,22 +1,106 @@
-html {
-  font-size: 14px;
+.mega-dropdown {
+  display: none;
+  position: fixed;
+  top: 96px;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.nav-item:hover .mega-dropdown {
+  display: block;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
+.dropdown-inner {
+  display: flex;
+  max-width: 80rem;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   position: relative;
-  min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+.col-category {
+  width: 260px;
+  flex-shrink: 0;
+  border-right: 1px solid #f3f4f6;
+  padding-bottom: 8px;
+}
+
+.col-title {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 4px;
+}
+
+.category-item {
+  position: relative;
+}
+
+.category-item:nth-child(2):hover > .col-brand {
+  top: calc(-40px - 0px);
+}
+
+.category-item:nth-child(3):hover > .col-brand {
+  top: calc(-40px - 40px);
+}
+
+.category-item:nth-child(4):hover > .col-brand {
+  top: calc(-40px - 80px);
+}
+
+.category-item:nth-child(5):hover > .col-brand {
+  top: calc(-40px - 120px);
+}
+
+.category-item:nth-child(6):hover > .col-brand {
+  top: calc(-40px - 160px);
+}
+
+.category-item .col-brand {
+  display: none;
+}
+
+.category-item:hover > a {
+  background: #f8fafc;
+  color: #2563eb;
+}
+
+.category-item:hover > .col-brand {
+  display: block;
+  position: absolute;
+  top: calc(-40px - 1px);
+  left: 260px;
+  width: 400px;
+  background: #fff;
+  border-left: 1px solid #f3f4f6;
+  padding-bottom: 8px;
+  box-shadow: none;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.col-brand-placeholder {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.product-title{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
