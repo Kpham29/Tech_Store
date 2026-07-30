@@ -1,110 +1,88 @@
-######################################
+## Visual Studio temporary files, build results
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
 # Build results
-######################################
-[Bb]in/
-[Oo]bj/
 [Dd]ebug/
 [Rr]elease/
 x64/
 x86/
-build/
-artifacts/
+bin/
+obj/
+out/
+**/bin/
+**/obj/
 
-######################################
-# Rider / ReSharper
-######################################
-.idea/
-*.sln.iml
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
+# ASP.NET Core
+appsettings.Development.json
+wwwroot/lib/
 
-######################################
-# Visual Studio
-######################################
+# Local uploads
+API/wwwroot/uploads/
+
+# Visual Studio / IDE
 .vs/
+.vscode/
 *.user
 *.suo
-*.userosscache
-*.sln.docstates
 
-######################################
-# Visual Studio Code
-######################################
-.vscode/
+# Rider
+.idea/
 
-######################################
 # Logs
-######################################
 *.log
-logs/
 
-######################################
-# ASP.NET
-######################################
-wwwroot/lib/
-wwwroot/dist/
-
-######################################
-# Publish output
-######################################
-publish/
-Publish/
-
-######################################
-# NuGet
-######################################
-packages/
-*.nupkg
-*.snupkg
-
-# Keep build targets
-!packages/build/
-
-
-######################################
-# Database
-######################################
+# SQL Server
 *.mdf
 *.ldf
 
-######################################
+# Entity Framework
+Migrations/*Designer.cs
+Migrations/*.resx
+
+# Publish output
+publish/
+.publish/
+*.publishsettings
+
+# NuGet
+packages/
+*.nupkg
+.nuget/
+
+
 # OS files
-######################################
 .DS_Store
 Thumbs.db
-desktop.ini
 
-######################################
-# Temporary files
-######################################
+# Test / Coverage
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Temp
 *.tmp
 *.temp
-*.cache
 
-######################################
-# Generated files
-######################################
-Generated/
-GeneratedFiles/
+# IIS Express
+.vs/config/applicationhost.config
 
-######################################
-# Entity Framework
-######################################
-Migrations/*.Designer.cs
+# Generated scaffolding
+ScaffoldingReadMe.txt
 
-######################################
+
 # Secrets
-######################################
 secrets.json
 
-######################################
-# Do NOT ignore these
-######################################
-!.gitignore
-!*.sln
-!*.csproj
-!*.props
-!*.targets
-!appsettings.json
-!appsettings.Development.json
+# Build folders
+**/bin/
+**/obj/
