@@ -28,4 +28,18 @@
       <ProjectReference Include="..\Ecommerce.BusinessObject\Ecommerce.BusinessObject.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\bottombanner1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\bottombanner2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\leftbanner1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\leftbanner2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\leftbanner3.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\leftbanner4.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\topbanner.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\banner\topbanner2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\icons\Account.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\icons\Saving.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\icons\Support.png" />
+    </ItemGroup>
+
 </Project>
