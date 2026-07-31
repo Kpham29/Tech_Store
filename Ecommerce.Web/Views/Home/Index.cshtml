@@ -1,4 +1,6 @@
-﻿@{
+@using Ecommerce.Web.Models
+@model Ecommerce.Web.Models.ProductViewModelList
+@{
     ViewData["Title"] = "TechStore";
 }
 
@@ -39,34 +41,45 @@
 <section class="mx-5 my-6">
     <div class="flex justify-between items-center mb-5">
         <h2 class="text-2xl font-semibold">New Products</h2>
-        <a href="/Catalog?cateId=&price=&page=1&sort=" class="text-blue-600 hover:underline">
+        <a href="/Catalog?isNew=true" class="text-blue-600 hover:underline">
             See All New Products
         </a>
     </div>
     <div class="grid grid-cols-6 gap-6">
-        <!-- NOTE: Hiển thị sản phẩm mới (Dữ liệu mẫu, logic lặp được comment) -->
-        
-        -->
-
-        <!-- Sản phẩm mẫu tĩnh 1 -->
-        <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300" href="#">
-            <div class="h-[150px] flex items-center justify-center">
-                <div class="text-gray-400">Image PlaceHolder</div>
-            </div>
-            <h3 class="text-sm font-medium leading-5 line-clamp-2">Product Name Example</h3>
-            <div class="flex items-center mt-2">
-                <i class="bi bi-star-fill text-[#ff8a00]"></i>
-                <i class="bi bi-star-fill text-[#ff8a00]"></i>
-                <i class="bi bi-star-fill text-[#ff8a00]"></i>
-                <i class="bi bi-star-fill text-[#ff8a00]"></i>
-                <i class="bi bi-star text-[#ff8a00]"></i>
-                <span class="text-xs text-gray-500 ml-2">(4.0)</span>
-            </div>
-            <div class="mt-auto pt-4 flex items-center justify-between">
-                <p class="font-bold text-md text-red-600">10,000,000 VND</p>
-                <button class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="bi bi-cart-plus"></i></button>
-            </div>
-        </a>
+        @if (Model != null && Model.NewProducts.Any())
+        {
+            @foreach (var item in Model.NewProducts)
+            {
+                <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                   href="/ProductDetail?id=@item.ProductId">
+                    <div class="h-[150px] flex items-center justify-center">
+                        <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
+                    </div>
+                    
+                    <h3 class="text-sm font-medium leading-5 line-clamp-2 mt-2">
+                        @item.ProductName
+                    </h3>
+                    
+                    <div class="flex items-center mt-2">
+                        <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                        <span class="text-xs text-gray-500 ml-2">(5.0)</span>
+                    </div>
+                    
+                    <div class="mt-auto pt-4 flex items-center justify-between">
+                        <p class="font-bold text-md text-red-600">
+                            @item.Price.ToString("#,##0") VND
+                        </p>
+                        <button type="button" class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
+                            <i class="bi bi-cart-plus"></i>
+                        </button>
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <p class="text-gray-500">There is no new products</p>
+        }
     </div>
 </section>
 
@@ -91,31 +104,200 @@
         </div>
         <div>
             <div class="grid grid-cols-5 gap-6">
-                <!-- NOTE: Vòng lặp hiển thị sản phẩm theo Category (Cate 1) -->
-                <!--
-                @* @foreach (var c in ViewBag.Cate1Pros) { ... } *@
-                -->
-                <!-- Sản phẩm mẫu tĩnh -->
-                <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300" href="#">
-                    <div class="h-[150px] flex items-center justify-center">
-                        <div class="text-gray-400">Laptop Sample</div>
-                    </div>
-                    <h3 class="text-sm font-medium leading-5 line-clamp-2">Laptop XYZ</h3>
-                    <div class="flex items-center mt-2">
-                        <i class="bi bi-star-fill text-[#ff8a00]"></i>
-                        <span class="text-xs text-gray-500 ml-2">(5.0)</span>
-                    </div>
-                    <div class="mt-auto pt-4 flex items-center justify-between">
-                        <p class="font-bold text-md text-red-600">20,000,000 VND</p>
-                        <button class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="bi bi-cart-plus"></i></button>
-                    </div>
-                </a>
+                @if (Model != null && Model.Laptops.Any())
+                {
+                    @foreach (var item in Model.Laptops)
+                    {
+                        <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                           href="/ProductDetail?id=@item.ProductId">
+                            <div class="h-[150px] flex items-center justify-center">
+                                <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
+                            </div>
+                    
+                            <h3 class="text-sm font-medium leading-5 line-clamp-2 mt-2">
+                                @item.ProductName
+                            </h3>
+                    
+                            <div class="flex items-center mt-2">
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <span class="text-xs text-gray-500 ml-2">(5.0)</span>
+                            </div>
+                    
+                            <div class="mt-auto pt-4 flex items-center justify-between">
+                                <p class="font-bold text-md text-red-600">
+                                    @item.Price.ToString("#,##0") VND
+                                </p>
+                                <button type="button" class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <p class="text-gray-500">There is no new products</p>
+                }
             </div>
         </div>
     </div>
 </section>
 
-<!-- ... Các section khác (MSI Products, Monitors, Keyboards) tương tự logic như trên ... -->
+<section class="mx-5 my-6">
+    <div class="grid grid-cols-[280px_1fr] gap-6">
+        <div class="relative h-[420px] overflow-hidden rounded">
+            <img src="~/images/banner/leftbanner2.png" alt="leftbanner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <h2 class="text-white text-4xl font-bold text-center leading-tight">MSI</h2>
+            </div>
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+                <a href="/Catalog?cateId=1" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
+            </div>
+        </div>
+        <div>
+            <div class="grid grid-cols-5 gap-6">
+                @if (Model != null && Model.MsiProducts.Any())
+                {
+                    @foreach (var item in Model.MsiProducts)
+                    {
+                        <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                           href="/ProductDetail?id=@item.ProductId">
+                            <div class="h-[150px] flex items-center justify-center">
+                                <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
+                            </div>
+                    
+                            <h3 class="text-sm font-medium leading-5 line-clamp-2 mt-2">
+                                @item.ProductName
+                            </h3>
+                    
+                            <div class="flex items-center mt-2">
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <span class="text-xs text-gray-500 ml-2">(5.0)</span>
+                            </div>
+                    
+                            <div class="mt-auto pt-4 flex items-center justify-between">
+                                <p class="font-bold text-md text-red-600">
+                                    @item.Price.ToString("#,##0") VND
+                                </p>
+                                <button type="button" class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <p class="text-gray-500">There is no new products</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mx-5 my-6">
+    <div class="grid grid-cols-[280px_1fr] gap-6">
+        <div class="relative h-[420px] overflow-hidden rounded">
+            <img src="~/images/banner/leftbanner3.png" alt="leftbanner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <h2 class="text-white text-4xl font-bold text-center leading-tight">Monitors</h2>
+            </div>
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+                <a href="/Catalog?cateId=1" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
+            </div>
+        </div>
+        <div>
+            <div class="grid grid-cols-5 gap-6">
+                @if (Model != null && Model.Monitors.Any())
+                {
+                    @foreach (var item in Model.Monitors)
+                    {
+                        <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                           href="/ProductDetail?id=@item.ProductId">
+                            <div class="h-[150px] flex items-center justify-center">
+                                <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
+                            </div>
+                    
+                            <h3 class="text-sm font-medium leading-5 line-clamp-2 mt-2">
+                                @item.ProductName
+                            </h3>
+                    
+                            <div class="flex items-center mt-2">
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <span class="text-xs text-gray-500 ml-2">(5.0)</span>
+                            </div>
+                    
+                            <div class="mt-auto pt-4 flex items-center justify-between">
+                                <p class="font-bold text-md text-red-600">
+                                    @item.Price.ToString("#,##0") VND
+                                </p>
+                                <button type="button" class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <p class="text-gray-500">There is no new products</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mx-5 my-6">
+    <div class="grid grid-cols-[280px_1fr] gap-6">
+        <div class="relative h-[420px] overflow-hidden rounded">
+            <img src="~/images/banner/leftbanner4.png" alt="leftbanner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <h2 class="text-white text-4xl font-bold text-center leading-tight">Keyboards</h2>
+            </div>
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+                <a href="/Catalog?cateId=1" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
+            </div>
+        </div>
+        <div>
+            <div class="grid grid-cols-5 gap-6">
+                @if (Model != null && Model.Keyboards.Any())
+                {
+                    @foreach (var item in Model.Keyboards)
+                    {
+                        <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                           href="/ProductDetail?id=@item.ProductId">
+                            <div class="h-[150px] flex items-center justify-center">
+                                <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
+                            </div>
+                    
+                            <h3 class="text-sm font-medium leading-5 line-clamp-2 mt-2">
+                                @item.ProductName
+                            </h3>
+                    
+                            <div class="flex items-center mt-2">
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <span class="text-xs text-gray-500 ml-2">(5.0)</span>
+                            </div>
+                    
+                            <div class="mt-auto pt-4 flex items-center justify-between">
+                                <p class="font-bold text-md text-red-600">
+                                    @item.Price.ToString("#,##0") VND
+                                </p>
+                                <button type="button" class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <p class="text-gray-500">There is no new products</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="mx-4 my-8">
     <div class="bg-[#eef2ff] h-[70px] rounded flex items-center justify-center">

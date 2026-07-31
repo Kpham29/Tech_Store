@@ -1,8 +1,14 @@
+using Ecommerce.Web.Helper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpClient("ApiClient", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5678/");
+});
+builder.Services.AddScoped<IApiHelperService, ApiHelperService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

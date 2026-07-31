@@ -1,3 +1,5 @@
+@using Ecommerce.Web.Models
+@model List<CategoryMenuViewModel>
 
 <div class="bg-gray-100">
     <div class="bg-[#eef2ff] text-[#1c1c1c] text-xs py-2 px-6 flex justify-between items-center" style="height:32px">
@@ -39,16 +41,39 @@
                             <div class="col-category">
                                 <div class="col-title">Category</div>
                                 
-                                <div class="category-item">
-                                    <a href="/Catalog?cateId=1" class="flex items-center justify-between px-4 py-2.5 text-sm text-gray-800 transition-colors">
-                                        Laptops
-                                        <i class="bi bi-chevron-right"></i>
-                                    </a>
-                                </div>
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var cate in Model)
+                                    {
+                                        <div class="category-item">
+                                            <a href="/Catalog?cateId=@cate.CategoryId" class="flex items-center justify-between px-4 py-2.5 text-sm text-gray-800 transition-colors">
+                                                @cate.CategoryName
+                                                <i class="bi bi-chevron-right"></i>
+                                            </a>
+                                            
+                                            <div class="col-brand !w-[420px]">
+                                                <div class="col-title">Brand</div>
+                                                <div class="grid grid-cols-2 gap-x-2">
+                                                    @if (cate.Brands != null)
+                                                    {
+                                                        foreach (var b in cate.Brands)
+                                                        {
+                                                            <a href="/Catalog?cateId=@cate.CategoryId&brandId=@b.BrandId" class="block px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 hover:text-blue-600">
+                                                                @b.BrandName
+                                                            </a>
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="px-4 py-2 text-sm text-red-500">No data</div>
+                                }
                             </div>
-
                             <div class="col-brand-placeholder"></div>
-
                         </div>
                     </div>
                 </li>

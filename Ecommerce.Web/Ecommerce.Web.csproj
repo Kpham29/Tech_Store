@@ -10,4 +10,8 @@
       <Folder Include="wwwroot\images\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Ecommerce.BusinessObject\Ecommerce.BusinessObject.csproj" />
+    </ItemGroup>
+
 </Project>
