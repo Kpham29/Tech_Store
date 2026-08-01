@@ -1,3 +1,5 @@
+using Ecommerce.BusinessObject.Enums;
+
 namespace Ecommerce.BusinessObject.DTOs;
 
 public class ProductDto
@@ -17,6 +19,7 @@ public class ProductFilterDto
     public decimal? MinPrice { get; set; }
     public decimal? MaxPrice { get; set; }
     public string? SortBy { get; set; }
+    public ProductStatus? Status { get; set; }
 
     public int PageIndex { get; set; } = 1;
     public int PageSize { get; set; } = 10;
