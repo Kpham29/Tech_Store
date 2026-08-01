@@ -22,6 +22,9 @@ namespace Ecommerce.API.Controllers
         public async Task<IActionResult> GetProducts([FromQuery] ProductFilterDto dto)
         {
             var query = _context.Products.Include(p => p.ProductImages).AsQueryable();
+            
+            if(dto.Status.HasValue)
+                query = query.Where(p => p.Status == dto.Status.Value);
             if(!string.IsNullOrWhiteSpace(dto.Keyword))
                 query = query.Where(p => p.ProductName.Contains(dto.Keyword));
             if (dto.CategoryId.HasValue)

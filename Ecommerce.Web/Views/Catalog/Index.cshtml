@@ -1,0 +1,290 @@
+@model Ecommerce.Web.Models.CatalogViewModel
+@{
+    ViewData["Title"] = "TechStore - Catalog";
+}
+
+<body class="bg-slate-100">
+
+<div class="max-w-[1400px] mx-auto px-4 pb-16">
+    
+    <div class="mt-5">
+        <img src="~/images/banner/topbanner2.png" class="w-full object-cover rounded-xl" alt="Banner">
+    </div>
+
+    <div class="flex gap-6 mt-6">
+        
+        <aside class="w-[240px] shrink-0 space-y-4">
+            <form action="@Url.Action("Index", "Catalog")" method="get">
+                <!-- Category -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h3 class="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <i class="bi bi-grid-3x3-gap text-blue-600"></i> Category
+                    </h3>
+                    <div class="space-y-2 text-sm">
+                        @if (Model.Categories != null)
+                        {
+                            foreach (var c in Model.Categories)
+                            {
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" class="accent-blue-600" name="cateId" value="@c.CategoryId"
+                                           @(c.CategoryId == Model.SelectedCategoryId ? "checked" : "")> @c.CategoryName
+                                </label>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <!-- Brand -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h3 class="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <i class="bi bi-award text-blue-600"></i> Brand
+                    </h3>
+                    <div class="space-y-2 text-sm">
+                        @if (Model.Brands != null)
+                        {
+                            var selectedBrandIds = Model.SelectedBrandIds as List<int> ?? new List<int>();
+                            foreach (var b in Model.Brands)
+                            {
+                                bool isChecked = selectedBrandIds.Contains((int)b.BrandId);
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600" name="brandId" value="@b.BrandId"
+                                           @(isChecked ? "checked" : "")> @b.BrandName
+                                </label>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h3 class="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <i class="bi bi-tag text-blue-600"></i> Price
+                    </h3>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="price" class="accent-blue-600" value="1"
+                                   @(Model.SelectedPrice == "1" ? "checked" : "")> Less than 5 million
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="price" class="accent-blue-600" value="2"
+                                   @(Model.SelectedPrice == "2" ? "checked" : "")> 5 – 15 million
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="price" class="accent-blue-600" value="3"
+                                   @(Model.SelectedPrice == "3" ? "checked" : "")> 15 – 25 million
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="price" class="accent-blue-600" value="4"
+                                   @(Model.SelectedPrice == "4" ? "checked" : "")> Greater than 25 million
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 mt-2">
+                    <button
+                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-xl text-sm"
+                        type="submit">
+                        Apply Filter
+                    </button>
+                    <a href="@Url.Action("Index", "Catalog")"
+                       class="flex-1 bg-red-500 hover:bg-red-600 text-white font-medium py-2.5 rounded-xl text-sm text-center">
+                        Clear
+                    </a>
+                </div>
+            </form>
+        </aside>
+
+        <!-- ===== MAIN ===== -->
+        <main class="flex-1">
+
+            <!-- TOP BAR -->
+            <div
+                class="bg-white border border-slate-200 rounded-xl px-5 py-3 flex flex-wrap gap-3 justify-between items-center mb-5">
+                <div class="flex gap-2 flex-wrap">
+
+                </div>
+                <div class="flex gap-2">
+                    <form action="@Url.Action("Index", "Catalog")" method="get" id="sortForm">
+                        <input type="hidden" name="cateId" value="@Model.SelectedCategoryId">
+                        <input type="hidden" name="price" value="@Model.SelectedPrice">
+                        @if (Model.SelectedBrandIds != null)
+                        {
+                            foreach (var bid in (List<int>)Model.SelectedBrandIds)
+                            {
+                                <input type="hidden" name="brandId" value="@bid">
+                            }
+                        }
+                        <input type="hidden" name="page" value="1">
+                        <select name="sort"
+                                class="border border-slate-200 text-sm px-3 py-2 rounded-lg bg-white focus:outline-none focus:border-blue-400"
+                                onchange="this.form.submit()">
+                            <!option value="newest" @(Model.SelectedSort == "newest" ? "selected" : "")>Newest
+                            </!option>
+                            <!option value="price_asc" @(Model.SelectedSort == "price_asc" ? "selected" : "")>Price: Low to High
+                            </!option>
+                            <!option value="price_desc" @(Model.SelectedSort == "price_desc" ? "selected" : "")>Price: High to Low
+                            </!option>
+                            <!option value="name_asc" @(Model.SelectedSort == "name_asc" ? "selected" : "")>Name: A-Z
+                            </!option>
+                            <!option value="name_desc" @(Model.SelectedSort == "name_desc" ? "selected" : "")>Name: Z-A
+                            </!option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+
+                @if (Model.Products != null)
+                {
+                    foreach (var p in Model.Products.Items)
+                    {
+                        <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                           href="@Url.Action("Detail", "Product", new { id = p.ProductId })">
+
+                            <div class="h-[150px] flex items-center justify-center">
+                                <img src="http://localhost:5678@(p.Thumbnail)"
+                                     alt="@p.ProductName"
+                                     class="max-h-full object-contain"/>
+                            </div>
+
+                            <h3 class="text-sm font-medium leading-5 line-clamp-2 mt-2">
+                                @p.ProductName
+                            </h3>
+
+                            <!-- Rating -->
+                            <div class="flex items-center mt-2">
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <i class="bi bi-star-fill text-[#ff8a00]"></i>
+                                <i class="bi bi-star text-[#ff8a00]"></i>
+
+                                <span class="text-xs text-gray-500 ml-2">(4.0)</span>
+                            </div>
+
+                            <div class="mt-auto pt-4 flex items-center justify-between">
+
+                                <p class="font-bold text-md text-red-600">
+                                    @String.Format("{0:#,##0}", p.Price) VND
+                                </p>
+
+                                <button class="w-10 h-10 border border-gray-300 rounded-md
+                                            flex items-center justify-center
+                                            hover:bg-blue-600 hover:text-white
+                                            transition-all duration-300"
+                                        title="Add to Cart">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </a>
+                    }
+                }
+
+            </div>
+
+            <div class="flex justify-center items-center gap-2 mt-10">
+                @{
+                    int currentPage = Model.Products.PageIndex;
+                    int totalPage = Model.Products.TotalPages;
+                }
+
+                @if (currentPage > 1)
+                {
+                    <a href="@Url.Action("Index", "Catalog", new { page = currentPage - 1, cateId = Model.SelectedCategoryId, price = Model.SelectedPrice, sort = Model.SelectedSort })"
+                       class="w-9 h-9 border border-slate-200 rounded-lg flex items-center justify-center">
+                        <i class="bi bi-chevron-left text-sm"></i>
+                    </a>
+                }
+
+                @for (int i = 1; i <= totalPage; i++)
+                {
+                    <a href="@Url.Action("Index", "Catalog", new { page = i, cateId = Model.SelectedCategoryId, price = Model.SelectedPrice, sort = Model.SelectedSort })"
+                       class="w-9 h-9 rounded-lg flex items-center justify-center text-sm @(i == currentPage ? "bg-blue-600 text-white font-semibold" : "border border-slate-200 text-slate-600 hover:bg-slate-100")">
+                        @i
+                    </a>
+                }
+
+                @if (currentPage < totalPage)
+                {
+                    <a href="@Url.Action("Index", "Catalog", new { page = currentPage + 1, cateId = Model.SelectedCategoryId, price = Model.SelectedPrice, sort = Model.SelectedSort })"
+                       class="w-9 h-9 border border-slate-200 rounded-lg flex items-center justify-center">
+                        <i class="bi bi-chevron-right text-sm"></i>
+                    </a>
+                }
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<section class="mt-5 mb-3 flex justify-center items-center mr-4 ml-4">
+    <img src="~/images/banner/bottombanner1.png" alt="banner" class="w-full h-[420px] object-cover rounded-md"/>
+</section>
+
+<section class="bg-[#f5f5f7] py-16">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="flex flex-col items-center text-center">
+
+                <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center">
+                    <img src="~/images/icons/Support.png" class="fa-solid fa-headset text-white text-lg"/>
+                </div>
+
+                <h3 class="mt-6 text-lg font-semibold text-black">
+                    Product Support
+                </h3>
+
+                <p class="mt-2 text-sm text-gray-500 max-w-[260px]">
+                    Up to 3 years on-site warranty available for your peace of mind.
+                </p>
+
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex flex-col items-center text-center">
+
+                <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center">
+                    <img src="~/images/icons/Account.png" class="fa-solid fa-headset text-white text-lg"/>
+                </div>
+
+                <h3 class="mt-6 text-lg font-semibold text-black">
+                    Personal Account
+                </h3>
+
+                <p class="mt-2 text-sm text-gray-500 max-w-[260px]">
+                    With big discounts, free delivery and a dedicated support specialist.
+                </p>
+
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex flex-col items-center text-center">
+
+                <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center">
+                    <img src="~/images/icons/Saving.png" class="fa-solid fa-headset text-white text-lg"/>
+                </div>
+
+                <h3 class="mt-6 text-lg font-semibold text-black">
+                    Amazing Savings
+                </h3>
+
+                <p class="mt-2 text-sm text-gray-500 max-w-[260px]">
+                    Up to 70% off new products, you can be sure of the best price.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
