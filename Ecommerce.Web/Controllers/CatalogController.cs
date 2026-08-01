@@ -15,7 +15,7 @@ public class CatalogController : Controller
     }
 
     public async Task<IActionResult> Index([FromQuery] int? cateId, [FromQuery] List<int> brandId, [FromQuery] string? price, 
-        [FromQuery] string? sort, [FromQuery] bool? isNew, [FromQuery] int page = 1)
+        [FromQuery] string? sort, [FromQuery] bool? isNew, [FromQuery] string? keyword, [FromQuery] int page = 1)
     {
         var vm = new CatalogViewModel
         {
@@ -23,7 +23,8 @@ public class CatalogController : Controller
             SelectedBrandIds = brandId,
             SelectedPrice = price,
             SelectedSort = sort,
-            IsNew = isNew
+            IsNew = isNew,
+            Keyword = keyword
         };
 
         decimal? minPrice = null;
@@ -40,6 +41,7 @@ public class CatalogController : Controller
                          (minPrice.HasValue ? $"&MinPrice={minPrice}" : "") +
                          (maxPrice.HasValue ? $"&MaxPrice={maxPrice}" : "") +
                          (isNew.HasValue && isNew.Value ? "&IsNew=true" : "") +
+                         (!string.IsNullOrEmpty(keyword) ? $"&Keyword={keyword}" : "") +
                          (!string.IsNullOrEmpty(sort) ? $"&SortBy={sort}" : "");
 
         var pros = await _api.GetAsync<PagedResult<ProductViewModel>>(productUrl);
@@ -53,6 +55,12 @@ public class CatalogController : Controller
             vm.Brands = cates.SelectMany(c => c.Brands).DistinctBy(b => b.BrandId).ToList();
         }
         return View(vm);
-            
+    }
+
+    public async Task<IActionResult> SearchSuggestions(string keyword)
+    {
+        var pros = await _api.GetAsync<PagedResult<ProductViewModel>>(
+            $"api/products/filter?Status=1&Keyword={keyword}&PageSize=5");
+        return Json(pros?.Items ?? new List<ProductViewModel>());
     }
 }

@@ -31,4 +31,5 @@ public class CatalogViewModel
     public string? SelectedPrice { get; set; }
     public string? SelectedSort  { get; set; }
     public bool? IsNew { get; set; }
+    public string? Keyword  { get; set; }
 }
