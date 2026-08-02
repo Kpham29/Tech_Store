@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-10">
+        Customer Login
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-10">
+            <h2 class="text-2xl font-semibold mb-4">
+                Registered Customers
+            </h2>
+
+            <p class="text-gray-600 mb-8">
+                If you have an account, sign in with your username.
+            </p>
+
+            <form asp-controller="Auth" asp-action="Login" method="post">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">
+                        Username <span class="text-red-500">*</span>
+                    </label>
+
+                    <input type="text"
+                           name="username"
+                           placeholder="Your Email"
+                           class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-sm font-semibold mb-2">
+                        Password <span class="text-red-500">*</span>
+                    </label>
+
+                    <input type="password"
+                           name="password"
+                           placeholder="Your Password"
+                           class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                @if (ViewBag.Error != null)
+                {
+                    <p class="text-red-500 text-sm mb-4">
+                        @ViewBag.Error
+                    </p>
+                }
+                @if (ViewBag.Success != null)
+                {
+                    <p class="text-green-500 text-sm mb-4">
+                        @ViewBag.Success
+                    </p>
+                }
+
+                <div class="flex items-center gap-6">
+                    <button type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 h-12 rounded-full transition">
+                        Sign In
+                    </button>
+
+                    <a href="/Auth/Verify"
+                       class="text-blue-600 hover:underline">
+                        Forgot Your Password?
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-10">
+            <h2 class="text-2xl font-semibold mb-4">
+                New Customer?
+            </h2>
+
+            <p class="text-gray-600 mb-6">
+                Creating an account has many benefits:
+            </p>
+
+            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-10">
+                <li>Check out faster</li>
+                <li>Keep more than one address</li>
+                <li>Track orders and more</li>
+            </ul>
+
+            <a href="/Auth/Register"
+               class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 h-12 rounded-full transition">
+                Create An Account
+            </a>
+        </div>
+    </div>
+</div>
