@@ -8,6 +8,7 @@ builder.Services.AddHttpClient("ApiClient", client =>
 {
     client.BaseAddress = new Uri("http://localhost:5678/");
 });
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IApiHelperService, ApiHelperService>();
 var app = builder.Build();
 
@@ -25,7 +26,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseAuthentication();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

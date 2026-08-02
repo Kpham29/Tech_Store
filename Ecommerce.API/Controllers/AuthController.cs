@@ -33,6 +33,7 @@ namespace Ecommerce.API.Controllers
             {
                 Username = dto.UserName,
                 Role = user.Role.RoleName,
+                Avatar = user.Avatar,
                 Token = token
             });
         }

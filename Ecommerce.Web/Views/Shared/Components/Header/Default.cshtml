@@ -110,40 +110,54 @@
                     <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
                 </button>
                 
-                <!-- NOTE: Xử lý hiển thị UI Đăng nhập / Đã đăng nhập (Đã comment code logic) -->
-                <!--
-                @* @if (User.Identity.IsAuthenticated) { *@
-                <div class="relative group">
-                    <button class="w-9 h-9 rounded-full overflow-hidden border-[1.5px] border-blue-600 flex items-center justify-center text-blue-600 text-lg">
-                        <i class="bi bi-person-circle"></i>
-                    </button>
+                @{
+                    var username = Context.Request.Cookies["username"];
+                    var role = Context.Request.Cookies["role"];
+                    var avatar = Context.Request.Cookies["avatar"];
+                }
 
-                    <div class="absolute right-0 top-full mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                        <div class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100 truncate">
-                            @* @User.Identity.Name *@
+                @if (!string.IsNullOrEmpty(username) && role == "Customer")
+                {
+                    <div class="relative group">
+                        <button class="w-9 h-9 rounded-full overflow-hidden border-[1.5px] border-blue-600 flex items-center justify-center text-blue-600 text-lg">
+                            @if (!string.IsNullOrEmpty(avatar))
+                            {
+                                <img src="http://localhost:5678@(avatar)" class="w-full h-full object-cover" alt="User Avatar" />
+                            }
+                            else
+                            {
+                                <i class="bi bi-person-circle"></i>
+                            }
+                        </button>
+
+                        <div class="absolute right-0 top-full mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                            <div class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100 truncate font-semibold">
+                                Xin chào, @username
+                            </div>
+                            <a href="/Profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                                Tài khoản của tôi
+                            </a>
+                            <a href="/Orders" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                                Đơn hàng
+                            </a>
+                            <a href="/Auth/Logout" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-50 rounded-b-lg">
+                                Đăng xuất
+                            </a>
                         </div>
-                        <a href="/Profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
-                            Tài khoản của tôi
-                        </a>
-                        <a href="/Orders" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
-                            Đơn hàng
-                        </a>
-                        <a href="/Auth/Logout" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-50 rounded-b-lg">
-                            Đăng xuất
-                        </a>
                     </div>
-                </div>
-                @* } else { *@
-                -->
-                <div class="relative inline-flex h-9 border-[1.5px] border-blue-600 rounded-full overflow-hidden isolate">
-                    <a href="/Auth/Register" class="peer/register order-2 relative z-10 w-[88px] flex items-center justify-center text-sm font-semibold text-blue-600 hover:text-white transition-colors duration-300">
-                        Register
-                    </a>
-                    <a href="/Auth/Login" class="order-1 relative z-10 w-[88px] flex items-center justify-center text-sm font-semibold text-white peer-hover/register:text-blue-600 transition-colors duration-300">
-                        Login
-                    </a>
-                    <div class="absolute -top-px -left-px w-1/2 h-[calc(100%+2px)] bg-blue-600 rounded-full -z-10 transition-all duration-300 ease-in-out peer-hover/register:left-[calc(50%+1px)]"></div>
-                </div>
+                }
+                else if (string.IsNullOrEmpty(username))
+                {
+                    <div class="relative inline-flex h-9 border-[1.5px] border-blue-600 rounded-full overflow-hidden isolate">
+                        <a href="/Auth/Register" class="peer/register order-2 relative z-10 w-[88px] flex items-center justify-center text-sm font-semibold text-blue-600 hover:text-white transition-colors duration-300">
+                            Register
+                        </a>
+                        <a href="/Auth/Login" class="order-1 relative z-10 w-[88px] flex items-center justify-center text-sm font-semibold text-white peer-hover/register:text-blue-600 transition-colors duration-300">
+                            Login
+                        </a>
+                        <div class="absolute -top-px -left-px w-1/2 h-[calc(100%+2px)] bg-blue-600 rounded-full -z-10 transition-all duration-300 ease-in-out peer-hover/register:left-[calc(50%+1px)]"></div>
+                    </div>
+                }
             </div>
         </div>
     </nav>
