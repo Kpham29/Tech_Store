@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-10">
+        Create Account
+    </h1>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-10">
+        <h2 class="text-2xl font-semibold mb-2">
+            Personal Information
+        </h2>
+
+        <p class="text-gray-600 mb-8">
+            Create your account to start shopping with us.
+        </p>
+
+        <form asp-controller="Auth" asp-action="Register" method="post">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Username -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2">
+                        Username <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="username" class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2">
+                        Email <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" name="email" class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2">
+                        Phone Number
+                    </label>
+                    <input type="text" name="phone" class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2">
+                        Address
+                    </label>
+                    <input type="text" name="address" class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <hr class="my-8">
+
+            <h2 class="text-2xl font-semibold mb-6">
+                Login Information
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Password -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2">
+                        Password <span class="text-red-500">*</span>
+                    </label>
+                    <input type="password" name="password" class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <!-- Confirm Password -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2">
+                        Confirm Password <span class="text-red-500">*</span>
+                    </label>
+                    <input type="password" name="confirmPassword" class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+            </div>
+
+            <!-- Error/Success Messages -->
+            @if (ViewBag.Error != null)
+            {
+                <div class="mt-6">
+                    <p class="text-red-500">
+                        @ViewBag.Error
+                    </p>
+                </div>
+            }
+            @if (ViewBag.Success != null)
+            {
+                <div class="mt-6">
+                    <p class="text-green-500">
+                        @ViewBag.Success
+                    </p>
+                </div>
+            }
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 h-12 rounded-full transition">
+                    Create Account
+                </button>
+
+                <a href="/Auth/Login" class="inline-flex items-center justify-center border border-gray-300 px-10 h-12 rounded-full hover:bg-gray-100 transition">
+                    Back To Login
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

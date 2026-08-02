@@ -35,7 +35,9 @@ public class ApiHelperService : IApiHelperService
             var responseContent = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<TResponse>(responseContent, _jsonOptions);
         }
-        return default;
+        
+        var errorContent = await response.Content.ReadAsStringAsync();
+        throw new Exception(errorContent);
     }
 
     public async Task<TResponse> PutAsync<TResponse, TRequest>(string endpoint, TRequest payload)
