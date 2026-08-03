@@ -1,0 +1,107 @@
+@model Ecommerce.Web.Models.SendOtpViewModel
+@{
+    ViewData["Title"] = "Verify Email";
+}
+
+<div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-10">Forgot Password</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Verify Form -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-10">
+            <h2 class="text-2xl font-semibold mb-4">Verify Your Email</h2>
+            <p class="text-gray-600 mb-8">
+                Enter the email associated with your account. We will verify it before allowing you to reset your password.
+            </p>
+
+            <form asp-controller="Auth" asp-action="VerifyEmail" method="post">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">
+                        Email Address <span class="text-red-500">*</span>
+                    </label>
+
+                    <div class="relative">
+                        <i class="bi bi-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="email" name="Email" value="@(Model?.Email)"
+                               placeholder="Enter your email" required
+                               class="w-full h-12 pl-12 pr-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="mb-6">
+                        <p class="text-red-500 text-sm">
+                            <i class="bi bi-exclamation-circle"></i> @ViewBag.Error
+                        </p>
+                    </div>
+                }
+
+                <div class="flex items-center gap-4">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 h-12 rounded-full transition">
+                        Verify Email
+                    </button>
+                    <a href="/Auth/Login" class="text-blue-600 hover:underline">
+                        Back To Login
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-10">
+            <h2 class="text-2xl font-semibold mb-4">Password Recovery</h2>
+            <p class="text-gray-600 mb-6">To protect your account, we need to verify your email before resetting your password.</p>
+            <div class="space-y-5">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="bi bi-envelope-check text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Verify Email</h3>
+                        <p class="text-sm text-gray-500">Make sure the email belongs to your account.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+
+                    <div class="w-10 h-10 rounded-full bg-blue-100
+                                 flex items-center justify-center">
+
+                        <i class="bi bi-shield-lock text-blue-600"></i>
+
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold">
+                            Secure Process
+                        </h3>
+
+                        <p class="text-sm text-gray-500">
+                            Only verified users can reset passwords.
+                        </p>
+                    </div>
+
+                </div>
+                <div class="flex items-start gap-4">
+
+                    <div class="w-10 h-10 rounded-full bg-blue-100
+                                 flex items-center justify-center">
+
+                        <i class="bi bi-key text-blue-600"></i>
+
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold">
+                            Create New Password
+                        </h3>
+
+                        <p class="text-sm text-gray-500">
+                            After verification, you can create a new password.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

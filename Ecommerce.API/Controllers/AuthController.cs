@@ -5,6 +5,7 @@ using Ecommerce.BusinessObject.Enums;
 using Ecommerce.BusinessObject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Ecommerce.API.Controllers
 {
@@ -14,11 +15,15 @@ namespace Ecommerce.API.Controllers
     {
         private readonly EcommerceDbContext _context;
         private readonly JwtService _jwt;
+        private readonly EmailService _email;
+        private readonly IMemoryCache _cache;
         
-        public AuthController(EcommerceDbContext context, JwtService jwt)
+        public AuthController(EcommerceDbContext context, JwtService jwt, EmailService email, IMemoryCache cache)
         {
             _context = context;
             _jwt = jwt;
+            _email = email;
+            _cache = cache;
         }
 
         [HttpPost("login")]
@@ -75,6 +80,62 @@ namespace Ecommerce.API.Controllers
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
             return Ok(new { message = "Register successful" });
+        }
+
+        [HttpPost("send-otp")]
+        public async Task<IActionResult> SendOtp([FromBody] SendOtpDto dto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+            if (user == null)
+                return BadRequest("Email is not existed");
+            var otp = new Random().Next(100000, 999999).ToString();
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
+            _cache.Set(dto.Email, otp, cacheOptions);
+            var subject = "Verify your identity";
+            var body = $"<p>Hello {user.UserName},</p><p>Your authentication OTP code is: <strong>{otp}</strong></p><p>This OTP code will expire in 5 minutes.</p>";
+
+            try
+            {
+                _ = Task.Run(() => _email.SendEmailAsync(dto.Email, subject, body));
+                return Ok(new {message = "OTP has been sent to your email"});
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpPost("verify-otp")]
+        public IActionResult VerifyOtp([FromBody] VerifyOtpDto dto)
+        {
+            if (_cache.TryGetValue(dto.Email, out string savedOtp))
+            {
+                if (savedOtp == dto.Otp)
+                {
+                    _cache.Remove(dto.Email);
+                    return Ok(new { message = "OTP verification successful" });
+                }
+
+                return BadRequest("Invalid OTP");
+            }
+
+            return BadRequest("OTP has expired or email is not found");
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+            if(dto.NewPassword != dto.ConfirmPassword)
+                return BadRequest("Password is not match");
+            if (dto.NewPassword.Length < 8 || !dto.NewPassword.Any(char.IsUpper) || !dto.NewPassword.Any(char.IsDigit) ||
+                !dto.NewPassword.Any(ch => char.IsLetterOrDigit(ch)))
+                return BadRequest(
+                    "Your password must be at least 8 characters long, including at least one uppercase letter, one number, and one special character.");
+            user.Password = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Reset password successful" });
         }
     }
 }

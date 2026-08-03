@@ -20,3 +20,21 @@ public class RegisterDto
     public string Password { get; set; }
     public string ConfirmPassword { get; set; }
 }
+
+public class SendOtpDto
+{
+    [Required] [EmailAddress] public string Email { get; set; } = null!;
+}
+
+public class VerifyOtpDto
+{
+    [Required] [EmailAddress] public string Email { get; set; } = null!;
+    [Required] public string Otp { get; set; } = null!;
+}
+
+public class ResetPasswordDto
+{
+    public string Email { get; set; }
+    public string NewPassword { get; set; }
+    public string ConfirmPassword { get; set; }
+}
