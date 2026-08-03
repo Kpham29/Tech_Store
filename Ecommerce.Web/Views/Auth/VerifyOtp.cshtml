@@ -1,0 +1,177 @@
+@model Ecommerce.Web.Models.VerifyOtpViewModel
+@{
+    ViewData["Title"] = "Verify OTP";
+}
+
+<div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-10">Verify OTP</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- OTP Form -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-10">
+            <h2 class="text-2xl font-semibold mb-4">Enter Verification Code</h2>
+            <p class="text-gray-600 mb-8">
+                We've sent a 6-digit code to <strong>@Model.Email</strong>. Please enter it below.
+            </p>
+
+            <form asp-controller="Auth" asp-action="VerifyOtp" method="post" id="otpForm">
+                <input type="hidden" name="Email" value="@Model.Email" />
+                
+                <input type="hidden" name="Otp" id="otpHidden" />
+
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">
+                        OTP Code <span class="text-red-500">*</span>
+                    </label>
+
+                    <div class="flex items-center gap-3" id="otpBoxes">
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"
+                               class="otp-box w-12 h-14 text-center text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"
+                               class="otp-box w-12 h-14 text-center text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"
+                               class="otp-box w-12 h-14 text-center text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"
+                               class="otp-box w-12 h-14 text-center text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"
+                               class="otp-box w-12 h-14 text-center text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"
+                               class="otp-box w-12 h-14 text-center text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                </div>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="mb-6">
+                        <p class="text-red-500 text-sm">
+                            <i class="bi bi-exclamation-circle"></i> @ViewBag.Error
+                        </p>
+                    </div>
+                }
+
+                <div class="flex items-center gap-4">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 h-12 rounded-full transition">
+                        Confirm OTP
+                    </button>
+                    <a href="/Auth/VerifyEmail" class="text-gray-500 hover:underline">
+                        Gửi lại mã
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Information panel -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-10">
+            <h2 class="text-2xl font-semibold mb-4">Check Your Inbox</h2>
+            <p class="text-gray-600 mb-6">If you don't see the email, please check your Spam/Junk folder.</p>
+            <div class="space-y-5">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="bi bi-envelope-check text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Verify Email</h3>
+                        <p class="text-sm text-gray-500">Make sure the email belongs to your account.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+
+                    <div class="w-10 h-10 rounded-full bg-blue-100
+                                 flex items-center justify-center">
+
+                        <i class="bi bi-shield-lock text-blue-600"></i>
+
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold">
+                            Secure Process
+                        </h3>
+
+                        <p class="text-sm text-gray-500">
+                            Only verified users can reset passwords.
+                        </p>
+                    </div>
+
+                </div>
+                <div class="flex items-start gap-4">
+
+                    <div class="w-10 h-10 rounded-full bg-blue-100
+                                 flex items-center justify-center">
+
+                        <i class="bi bi-key text-blue-600"></i>
+
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold">
+                            Create New Password
+                        </h3>
+
+                        <p class="text-sm text-gray-500">
+                            After verification, you can create a new password.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const boxes = Array.from(document.querySelectorAll('.otp-box'));
+            const hiddenInput = document.getElementById('otpHidden');
+            const form = document.getElementById('otpForm');
+
+            function updateHidden() {
+                hiddenInput.value = boxes.map(b => b.value).join('');
+            }
+
+            boxes.forEach((box, index) => {
+                box.addEventListener('input', function (e) {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+
+                    if (this.value.length === 1 && index < boxes.length - 1) {
+                        boxes[index + 1].focus();
+                    }
+                    updateHidden();
+                });
+                
+                box.addEventListener('keydown', function (e) {
+                    if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                        boxes[index - 1].focus();
+                    }
+                });
+                
+                box.addEventListener('paste', function (e) {
+                    e.preventDefault();
+                    const pasted = (e.clipboardData || window.clipboardData)
+                        .getData('text')
+                        .replace(/[^0-9]/g, '')
+                        .slice(0, boxes.length);
+
+                    pasted.split('').forEach((char, i) => {
+                        if (boxes[i]) boxes[i].value = char;
+                    });
+
+                    const nextIndex = Math.min(pasted.length, boxes.length - 1);
+                    boxes[nextIndex].focus();
+                    updateHidden();
+                });
+            });
+
+            form.addEventListener('submit', function (e) {
+                updateHidden();
+                if (hiddenInput.value.length !== boxes.length) {
+                    e.preventDefault();
+                    boxes[0].focus();
+                }
+            });
+            
+            boxes[0].focus();
+        })();
+    </script>
+}
