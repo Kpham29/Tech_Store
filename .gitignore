@@ -54,7 +54,7 @@ packages/
 *.nupkg
 .nuget/
 
-
+wwwroot/avatar
 # OS files
 .DS_Store
 Thumbs.db
