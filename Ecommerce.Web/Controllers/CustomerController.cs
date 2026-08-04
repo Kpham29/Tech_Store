@@ -61,4 +61,37 @@ public class CustomerController : Controller
             return View(profile);
         }
     }
+    
+    [HttpGet]
+    public IActionResult ChangePassword()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        try
+        {
+            using var content = new MultipartFormDataContent();
+            content.Add(new StringContent(model.OldPassword ?? ""), "OldPassword");
+            content.Add(new StringContent(model.NewPassword ?? ""), "NewPassword");
+            content.Add(new StringContent(model.ConfirmNewPassword ?? ""), "ConfirmNewPassword");
+
+            var result = await _api.PutMultipartAsync<object>("api/customer/change-password", content);
+
+            ViewBag.Success = "Password changed successfully!";
+            return View(new ChangePasswordViewModel());
+        }
+        catch (Exception e)
+        {
+            ViewBag.Error = e.Message;
+            return View(model);
+        }
+    }
 }
