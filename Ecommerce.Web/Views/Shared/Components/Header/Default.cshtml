@@ -113,7 +113,7 @@
                 @{
                     var username = Context.Request.Cookies["username"];
                     var role = Context.Request.Cookies["role"];
-                    var avatar = Context.Request.Cookies["avatar"];
+                    var avatar = ViewBag.Avatar as string;
                 }
 
                 @if (!string.IsNullOrEmpty(username) && role == "Customer")
@@ -134,10 +134,10 @@
                             <div class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100 truncate font-semibold">
                                 Hello, @username
                             </div>
-                            <a href="/Profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                            <a href="/Customer/Profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
                                 My Account
                             </a>
-                            <a href="/Orders" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                            <a href="/Customer/Orders" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">
                                 Orders
                             </a>
                             <a href="/Auth/Logout" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-50 rounded-b-lg">
