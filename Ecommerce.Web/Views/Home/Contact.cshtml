@@ -1,0 +1,132 @@
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<section class="bg-gradient-to-r from-blue-600 to-blue-700 py-20">
+    <div class="max-w-7xl mx-auto text-center text-white">
+        <h1 class="text-5xl font-bold">
+            Contact Us
+        </h1>
+        <p class="mt-5 text-lg text-blue-100">
+            Have questions about products, orders or warranty?
+            Our support team is always ready to help.
+        </p>
+    </div>
+</section>
+
+<section class="max-w-7xl mx-auto py-16 px-5">
+    <div class="grid lg:grid-cols-2 gap-10">
+        <div class="bg-white rounded-xl shadow-md border p-8">
+            <h2 class="text-2xl font-bold mb-8">
+                Contact Information
+            </h2>
+            <div class="space-y-8">
+                <div class="flex">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="bi bi-geo-alt-fill text-blue-600 text-xl"></i>
+                    </div>
+                    <div class="ml-5">
+                        <h3 class="font-semibold">Address</h3>
+                        <p class="text-gray-500">
+                            123 Nguyen Van Linh Street,
+                            District 7,
+                            Ho Chi Minh City
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="bi bi-telephone-fill text-blue-600"></i>
+                    </div>
+                    <div class="ml-5">
+                        <h3 class="font-semibold">Phone</h3>
+                        <p class="text-gray-500">(+84) 987 654 321</p>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="bi bi-envelope-fill text-blue-600"></i>
+                    </div>
+                    <div class="ml-5">
+                        <h3 class="font-semibold">Email</h3>
+                        <p class="text-gray-500">support@techstore.com</p>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="bi bi-clock-fill text-blue-600"></i>
+                    </div>
+                    <div class="ml-5">
+                        <h3 class="font-semibold">Working Hours</h3>
+                        <p class="text-gray-500">
+                            Mon - Sun<br>
+                            08:00 AM - 09:00 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md border p-8">
+            <h2 class="text-2xl font-bold mb-8">Send us a Message</h2>
+            <form class="space-y-5">
+                <input type="text" placeholder="Your Name" class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="email" placeholder="Email Address" class="w-full border rounded-lg px-4 py-3">
+                <input type="text" placeholder="Subject" class="w-full border rounded-lg px-4 py-3">
+                <textarea rows="6" placeholder="Your Message" class="w-full border rounded-lg px-4 py-3"></textarea>
+                <button type="button" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-5 mb-20">
+    <div class="rounded-xl overflow-hidden shadow-lg border">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.749078889188!2d105.79994647503067!3d21.002693080640157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aca302b16f5f%3A0x1833ade34a179862!2zNTQgUC4gTMOqIFbEg24gVGhpw6ptLCBLaHUgdOG6rXAgdGjhu4MgVGjhu6d5IHPhuqNuLCBUaGFuaCBYdcOibiwgSMOgIE7hu5lpIDEwMDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1783330954029!5m2!1svi!2s" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+</section>
+
+<section class="bg-[#f5f5f7] py-16">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Item 1 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center">
+                    <img src="/images/icons/Support.png" class="fa-solid fa-headset text-white text-lg" />
+                </div>
+                <h3 class="mt-6 text-lg font-semibold text-black">Product Support</h3>
+                <p class="mt-2 text-sm text-gray-500 max-w-[260px]">
+                    Up to 3 years on-site warranty available for your peace of mind.
+                </p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center">
+                    <img src="/images/icons/Account.png" class="fa-solid fa-headset text-white text-lg" />
+                </div>
+                <h3 class="mt-6 text-lg font-semibold text-black">Personal Account</h3>
+                <p class="mt-2 text-sm text-gray-500 max-w-[260px]">
+                    With big discounts, free delivery and a dedicated support specialist.
+                </p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center">
+                    <img src="/images/icons/Saving.png" class="fa-solid fa-headset text-white text-lg" />
+                </div>
+                <h3 class="mt-6 text-lg font-semibold text-black">Amazing Savings</h3>
+                <p class="mt-2 text-sm text-gray-500 max-w-[260px]">
+                    Up to 70% off new products, you can be sure of the best price.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

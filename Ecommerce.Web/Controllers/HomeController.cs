@@ -35,4 +35,10 @@ public class HomeController : Controller
         };
         return View(rs);
     }
+
+    [Route("Contact")]
+    public IActionResult Contact()
+    {
+        return View();
+    }
 }
