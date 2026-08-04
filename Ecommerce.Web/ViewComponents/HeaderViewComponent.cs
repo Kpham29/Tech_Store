@@ -20,6 +20,24 @@ public class HeaderViewComponent : ViewComponent
         {
             cates = new List<CategoryMenuViewModel>();
         }
+
+        var token = HttpContext.Request.Cookies["jwtToken"];
+        if (!string.IsNullOrEmpty(token))
+        {
+            try
+            {
+                var profile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
+                if (profile != null && !string.IsNullOrEmpty(profile.Avatar))
+                {
+                    ViewBag.Avatar = profile.Avatar;
+                }
+            }
+            catch
+            {
+                // Ignore errors to ensure the header always renders
+            }
+        }
+
         return View(cates);
     }
 }
