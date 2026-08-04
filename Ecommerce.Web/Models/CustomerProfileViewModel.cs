@@ -9,3 +9,10 @@ public class CustomerProfileViewModel
     public string? Avatar  { get; set; }
     public DateTime? CreatedAt { get; set; }
 }
+
+public class ChangePasswordViewModel
+{
+    public string OldPassword { get; set; }
+    public string NewPassword { get; set; }
+    public string ConfirmNewPassword { get; set; }
+}

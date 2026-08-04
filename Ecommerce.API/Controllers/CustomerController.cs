@@ -72,5 +72,29 @@ namespace Ecommerce.API.Controllers
             await _context.SaveChangesAsync();
             return Ok(new { message = "Update profile successful" });
         }
+
+        [HttpPut("change-password")]
+        public async Task<IActionResult> ChangePassword([FromForm] ChangePasswordDto dto)
+        {
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(string.IsNullOrEmpty(userIdStr) || !int.TryParse(userIdStr, out int userId))
+                return Unauthorized();
+            var user = await _context.Users.FindAsync(userId);
+            if(user == null) return NotFound();
+            if(!BCrypt.Net.BCrypt.Verify(dto.OldPassword, user.Password))
+                return BadRequest("Old password is incorrect, please try again");
+            if(dto.NewPassword == dto.OldPassword)
+                return BadRequest("Old password and new password must be different");
+            if(dto.NewPassword != dto.ConfirmNewPassword)
+                return BadRequest("New password does not match");
+            if (dto.NewPassword.Length < 8 || !dto.NewPassword.Any(char.IsUpper) ||
+                !dto.NewPassword.Any(char.IsDigit) ||
+                !dto.NewPassword.Any(ch => char.IsLetterOrDigit(ch)))
+                return BadRequest(
+                    "Your password must be at least 8 characters long, including at least one uppercase letter, one number, and one special character.");
+            user.Password = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Password changed successfully" });
+        }
     }
 }

@@ -111,12 +111,13 @@
                 </button>
                 
                 @{
-                    var username = Context.Request.Cookies["username"];
-                    var role = Context.Request.Cookies["role"];
+                    var username = ViewBag.Username as string;
+                    var role = ViewBag.Role as string;
                     var avatar = ViewBag.Avatar as string;
+                    bool isLoggedIn = ViewBag.IsLoggedIn ?? false;
                 }
 
-                @if (!string.IsNullOrEmpty(username) && role == "Customer")
+                @if (isLoggedIn && role == "Customer")
                 {
                     <div class="relative group">
                         <button class="w-9 h-9 rounded-full overflow-hidden border-[1.5px] border-blue-600 flex items-center justify-center text-blue-600 text-lg">
@@ -146,7 +147,7 @@
                         </div>
                     </div>
                 }
-                else if (string.IsNullOrEmpty(username))
+                else if (!isLoggedIn)
                 {
                     <div class="relative inline-flex h-9 border-[1.5px] border-blue-600 rounded-full overflow-hidden isolate">
                         <a href="/Auth/Register" class="peer/register order-2 relative z-10 w-[88px] flex items-center justify-center text-sm font-semibold text-blue-600 hover:text-white transition-colors duration-300">
