@@ -22,7 +22,7 @@ appsettings.Development.json
 wwwroot/lib/
 
 # Local uploads
-API/wwwroot/uploads/
+Ecommerce.API/wwwroot/avatar/
 
 # Visual Studio / IDE
 .vs/
