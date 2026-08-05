@@ -51,7 +51,7 @@
             @foreach (var item in Model.NewProducts)
             {
                 <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                   href="/ProductDetail?id=@item.ProductId">
+                   href="/Catalog/ProductDetail/@item.ProductId">
                     <div class="h-[150px] flex items-center justify-center">
                         <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
                     </div>
@@ -109,7 +109,7 @@
                     @foreach (var item in Model.Laptops)
                     {
                         <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                           href="/ProductDetail?id=@item.ProductId">
+                           href="/Catalog/ProductDetail/@item.ProductId">
                             <div class="h-[150px] flex items-center justify-center">
                                 <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
                             </div>
@@ -151,7 +151,7 @@
                 <h2 class="text-white text-4xl font-bold text-center leading-tight">MSI</h2>
             </div>
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
-                <a href="/Catalog?cateId=1" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
+                <a href="/Catalog?brandId=3" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
             </div>
         </div>
         <div>
@@ -161,7 +161,7 @@
                     @foreach (var item in Model.MsiProducts)
                     {
                         <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                           href="/ProductDetail?id=@item.ProductId">
+                           href="/Catalog/ProductDetail/@item.ProductId">
                             <div class="h-[150px] flex items-center justify-center">
                                 <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
                             </div>
@@ -203,7 +203,7 @@
                 <h2 class="text-white text-4xl font-bold text-center leading-tight">Monitors</h2>
             </div>
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
-                <a href="/Catalog?cateId=1" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
+                <a href="/Catalog?cateId=2" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
             </div>
         </div>
         <div>
@@ -213,7 +213,7 @@
                     @foreach (var item in Model.Monitors)
                     {
                         <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                           href="/ProductDetail?id=@item.ProductId">
+                           href="/Catalog/ProductDetail/@item.ProductId">
                             <div class="h-[150px] flex items-center justify-center">
                                 <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
                             </div>
@@ -255,7 +255,7 @@
                 <h2 class="text-white text-4xl font-bold text-center leading-tight">Keyboards</h2>
             </div>
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
-                <a href="/Catalog?cateId=1" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
+                <a href="/Catalog?cateId=4" class="text-white text-lg underline hover:text-gray-300 transition">See All Products</a>
             </div>
         </div>
         <div>
@@ -265,7 +265,7 @@
                     @foreach (var item in Model.Keyboards)
                     {
                         <a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                           href="/ProductDetail?id=@item.ProductId">
+                           href="/Catalog/ProductDetail/@item.ProductId">
                             <div class="h-[150px] flex items-center justify-center">
                                 <img src="http://localhost:5678@(item.Thumbnail)" alt="@item.ProductName" class="max-h-full object-contain" />
                             </div>
