@@ -1,6 +1,7 @@
 using Ecommerce.API.Helpers;
 using Ecommerce.BusinessObject;
 using Ecommerce.BusinessObject.DTOs;
+using Ecommerce.BusinessObject.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -63,6 +64,56 @@ namespace Ecommerce.API.Controllers
 
             var pagedData = await selectQuery.ToPagedResultAsync(dto.PageIndex, dto.PageSize);
             return Ok(pagedData);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductById(int id)
+        {
+            var pro = await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Brand)
+                .Include(p => p.ProductImages)
+                .Include(p => p.ProductAttributes)
+                .ThenInclude(a => a.Attribute)
+                .FirstOrDefaultAsync(p => p.ProductId == id && p.Status == ProductStatus.Active);
+            if (pro == null) return NotFound(new { message = "Product does not exist" });
+            var dto = new ProductDetailDto
+            {
+                ProductId = pro.ProductId,
+                ProductName = pro.ProductName,
+                Price = pro.Price,
+                Description = pro.Description ?? string.Empty,
+                Quantity = pro.Quantity,
+                CategoryName = pro.Category.CategoryName,
+                BrandName = pro.Brand.BrandName,
+                Thumbnail = pro.ProductImages
+                    .Where(i => i.IsThumbnail == true).FirstOrDefault().Url,
+                ProductImages = pro.ProductImages
+                    .Select(i => i.Url).ToList(),
+                Attributes = pro.ProductAttributes
+                    .Where(pa => pa.Attribute != null)
+                    .ToDictionary(pa => pa.Attribute.AttributeName, pa => pa.AttributeValue)
+            };
+            return Ok(dto);
+        }
+
+        [HttpGet("related-product/{id}")]
+        public async Task<IActionResult> GetRelatedProductById(int id)
+        {
+            var pro = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id);
+            if (pro == null) return NotFound();
+            var relatedPros = await _context.Products
+                .Include(p => p.ProductImages)
+                .Where(p => (p.CategoryId == pro.CategoryId || p.BrandId == pro.BrandId) && p.ProductId != id
+                    && p.Status == ProductStatus.Active)
+                .Select(p => new ProductDto
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Price = p.Price,
+                    Thumbnail = p.ProductImages.Where(i => i.IsThumbnail == true).FirstOrDefault().Url
+                }).ToListAsync();
+            return Ok(relatedPros);
         }
     }
 }

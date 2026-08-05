@@ -24,3 +24,18 @@ public class ProductFilterDto
     public int PageIndex { get; set; } = 1;
     public int PageSize { get; set; } = 10;
 }
+
+public class ProductDetailDto{
+    public int ProductId  { get; set; }
+    public string ProductName { get; set; }
+    public decimal Price { get; set; }
+    public int Quantity  { get; set; }
+    public string? Description  { get; set; }
+    public string Thumbnail { get; set; }
+    
+    public string CategoryName  { get; set; }
+    public string BrandName  { get; set; }
+    
+    public List<string> ProductImages { get; set; } = new List<string>();
+    public Dictionary<string, string> Attributes { get; set; } =  new Dictionary<string, string>();
+}

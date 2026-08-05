@@ -63,4 +63,18 @@ public class CatalogController : Controller
             $"api/products/filter?Status=1&Keyword={keyword}&PageSize=5");
         return Json(pros?.Items ?? new List<ProductViewModel>());
     }
+
+    public async Task<IActionResult> ProductDetail(int id)
+    {
+        var rs = await _api.GetAsync<ProductDetailViewModel>($"api/products/{id}");
+        if (rs == null)
+            return RedirectToAction("Index", "Home");
+        var related = await _api.GetAsync<List<ProductViewModel>>($"api/products/related-product/{id}");
+        if (related != null)
+        {
+            rs.RelatedProducts = related;
+        }
+        return View(rs);
+    }
+    
 }
