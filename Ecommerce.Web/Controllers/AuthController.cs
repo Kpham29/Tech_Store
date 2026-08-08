@@ -63,8 +63,9 @@ namespace Ecommerce.Web.Controllers
                 {
                     Response.Cookies.Append("jwtToken", result.Token, new CookieOptions 
                     { 
-                        HttpOnly = true, 
-                        Secure = true, 
+                        HttpOnly = false, 
+                        Secure = false, 
+                        SameSite = SameSiteMode.Lax,
                         Expires = DateTime.UtcNow.AddDays(1)
                     });
                     

@@ -94,4 +94,25 @@ public class CustomerController : Controller
             return View(model);
         }
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Cart()
+    {
+        try
+        {
+            var token = Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login", "Auth", new { message = "You have not logged in yet" });
+                
+            var cart = await _api.GetAsync<CartViewModel>("api/carts");
+            if (cart != null && cart.CartItems.Any())
+            {
+                cart.DeliveryFee = 20000;
+            }
+            return View(cart);
+        }
+        catch
+        {
+            return RedirectToAction("Login", "Auth", new { message = "The session expired!" });
+        }
+    }
 }
