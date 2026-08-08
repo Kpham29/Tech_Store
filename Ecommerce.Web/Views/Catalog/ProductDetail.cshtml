@@ -60,14 +60,13 @@
                     
                     <div class="flex items-center gap-4 mb-6">
                         <div class="flex border border-gray-300 rounded-xl h-[50px] items-center bg-white overflow-hidden flex-shrink-0">
-                            <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition h-full"><i class="bi bi-dash"></i></button>
-                            <input type="text" value="1" class="w-12 text-center font-semibold focus:outline-none border-x border-gray-200 h-full" readonly />
-                            <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition h-full"><i class="bi bi-plus"></i></button>
+                            <button id="btn-detail-minus" class="px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition h-full"><i class="bi bi-dash"></i></button>
+                            <input type="text" id="detail-qty-input" value="1" class="w-12 text-center font-semibold focus:outline-none border-x border-gray-200 h-full" readonly />
+                            <button id="btn-detail-plus" class="px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition h-full"><i class="bi bi-plus"></i></button>
                         </div>
-                        
-                        <button class="flex-1 bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 h-[50px] shadow-md hover:shadow-lg">
-                            <span>Add To Cart</span>
-                            <i class="bi bi-cart-plus text-xl"></i>
+
+                        <button id="btn-detail-add-cart" class="h-[50px] px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition">
+                            Add to Cart
                         </button>
                         
                         <button class="flex-1 bg-gray-800 text-white font-semibold py-3 px-4 rounded-xl hover:bg-gray-900 transition flex items-center justify-center gap-2 h-[50px] shadow-md hover:shadow-lg">
@@ -226,7 +225,9 @@
                                 <p class="font-bold text-sm text-red-600">
                                     @p.Price.ToString("N0") VND
                                 </p>
-                                <button class="w-10 h-10 border border-blue-500 rounded-xl text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300" onclick="event.preventDefault(); /* Cart Logic */">
+                                <button type="button" 
+                                        onclick="event.preventDefault(); event.stopPropagation(); addToCart(@p.ProductId, 1);"
+                                        class="bg-blue-600 text-white w-full py-2 rounded font-semibold hover:bg-blue-700 transition">
                                     <i class="bi bi-cart-plus text-lg"></i>
                                 </button>
                             </div>
@@ -376,6 +377,22 @@
             carousel.addEventListener('scroll', updateButtons);
             setTimeout(updateButtons, 100);
             window.addEventListener('resize', updateButtons);
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputQty = document.getElementById('detail-qty-input');
+
+            document.getElementById('btn-detail-minus').addEventListener('click', () => {
+                let val = parseInt(inputQty.value);
+                if (val > 1) inputQty.value = val - 1;
+            });
+            document.getElementById('btn-detail-plus').addEventListener('click', () => {
+                inputQty.value = parseInt(inputQty.value) + 1;
+            });
+
+            document.getElementById('btn-detail-add-cart').addEventListener('click', () => {
+                let quantity = parseInt(inputQty.value);
+                addToCart(@Model.ProductId, quantity);
+            });
         });
     </script>
 }

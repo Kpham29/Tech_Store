@@ -78,6 +78,11 @@ namespace Ecommerce.API.Controllers
                 CreatedAt = DateTime.Now
             };
             _context.Users.Add(newUser);
+            var cart = new Carts
+            {
+                UserId = newUser.UserId
+            };
+            _context.Carts.Add(cart);
             await _context.SaveChangesAsync();
             return Ok(new { message = "Register successful" });
         }

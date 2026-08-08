@@ -1,0 +1,41 @@
+@model Ecommerce.Web.Models.ProductViewModel
+
+<a class="border rounded-lg p-4 h-[320px] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white"
+   href="@Url.Action("ProductDetail", "Catalog", new { id = Model.ProductId })">
+
+    <div class="h-[150px] flex items-center justify-center">
+        <img src="http://localhost:5678@(Model.Thumbnail)"
+             alt="@Model.ProductName"
+             class="max-h-full object-contain"/>
+    </div>
+
+    <h3 class="text-sm font-medium leading-5 line-clamp-2 mt-2">
+        @Model.ProductName
+    </h3>
+
+    <!-- Rating -->
+    <div class="flex items-center mt-2">
+        <i class="bi bi-star-fill text-[#ff8a00]"></i>
+        <i class="bi bi-star-fill text-[#ff8a00]"></i>
+        <i class="bi bi-star-fill text-[#ff8a00]"></i>
+        <i class="bi bi-star-fill text-[#ff8a00]"></i>
+        <i class="bi bi-star text-[#ff8a00]"></i>
+
+        <span class="text-xs text-gray-500 ml-2">(4.0)</span>
+    </div>
+
+    <div class="mt-auto pt-4 flex items-center justify-between">
+
+        <p class="font-bold text-md text-red-600">
+            @String.Format("{0:#,##0}", Model.Price) VND
+        </p>
+
+        <button type="button" 
+                onclick="event.preventDefault(); event.stopPropagation(); addToCart(@Model.ProductId, 1);"
+                class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
+            <i class="bi bi-cart-plus"></i>
+        </button>
+
+    </div>
+
+</a>

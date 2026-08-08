@@ -105,10 +105,11 @@
                 <button class="text-gray-500 hover:text-gray-800 text-lg">
                     <i class="bi bi-heart"></i>
                 </button>
-                <button class="relative text-gray-500 hover:text-gray-800 text-lg">
+                <button id="cartButton" class="relative text-gray-500 hover:text-gray-800 text-lg">
                     <i class="bi bi-cart"></i>
-                    <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+                    <span id="cartCountBadge" class="absolute -top-2 -right-2 bg-blue-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
                 </button>
+
                 
                 @{
                     var username = ViewBag.Username as string;
@@ -221,5 +222,13 @@
                 suggestBox.classList.remove("hidden");
             }
         });
+    });
+    document.getElementById("cartButton").addEventListener("click", function() {
+        var isLoggedIn = @(isLoggedIn.ToString().ToLower());
+        if (!isLoggedIn) {
+            window.location.href = '/Auth/Login?message=' + encodeURIComponent('You have not logged in yet');
+        } else {
+            window.location.href = '/Customer/Cart';
+        }
     });
 </script>
