@@ -3,62 +3,83 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<div class="max-w-screen-xl mx-auto px-6 py-10">
+<div class="max-w-screen-xl mx-auto px-6 pt-6 pb-2">
+    <div class="text-sm text-gray-500 font-medium">
+        <a href="/" class="hover:text-blue-600 transition">Home</a>
+        <span class="mx-2">|</span>
+        <span class="text-gray-800">Cart</span>
+    </div>
+</div>
+<div class="max-w-screen-xl mx-auto px-6 pb-10">
     <div class="flex flex-col lg:flex-row gap-8">
-        
+
         <!-- CỘT TRÁI -->
         <div class="lg:w-2/3">
             <h1 class="text-2xl font-semibold text-gray-800 mb-6">Shopping Cart</h1>
-            
+
             <div class="border border-gray-200 rounded-lg overflow-hidden">
                 <table class="w-full text-left">
                     <thead class="bg-gray-50 text-xs font-semibold text-gray-500 uppercase">
-                        <tr>
-                            <th class="px-6 py-4">Products</th>
-                            <th class="px-6 py-4">Price</th>
-                            <th class="px-6 py-4">Quantity</th>
-                            <th class="px-6 py-4">Sub-Total</th>
-                        </tr>
+                    <tr>
+                        <th class="px-6 py-4">Products</th>
+                        <th class="px-6 py-4">Price</th>
+                        <th class="px-6 py-4">Quantity</th>
+                        <th class="px-6 py-4">Sub-Total</th>
+                    </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200" id="cartTableBody">
-                        @if(Model.CartItems != null && Model.CartItems.Count > 0)
+                    @if (Model.CartItems != null && Model.CartItems.Count > 0)
+                    {
+                        @foreach (var item in Model.CartItems)
                         {
-                            @foreach(var item in Model.CartItems)
-                            {
-                                <tr class="cart-item-row" data-cartitemid="@item.CartItemId">
-                                    <td class="px-6 py-4 flex items-center gap-4">
-                                        <button type="button" onclick="removeCartItem(@item.CartItemId)" class="text-gray-400 hover:text-red-500 border border-gray-300 rounded-full w-6 h-6 flex items-center justify-center">
-                                            <i class="bi bi-x"></i>
+                            <tr class="cart-item-row" data-cartitemid="@item.CartItemId">
+                                <td class="px-6 py-4 flex items-center gap-4">
+                                    <button type="button" onclick="removeCartItem(@item.CartItemId)"
+                                            class="text-gray-400 hover:text-red-500 border border-gray-300 rounded-full w-6 h-6 flex items-center justify-center">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                    <img src="http://localhost:5678@(item.Thumbnail)" class="w-16 h-16 object-contain"/>
+                                    <span class="text-sm font-medium text-gray-800">@item.ProductName</span>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-gray-700">
+                                    @(item.Price.ToString("N0")) VNĐ
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div
+                                        class="flex items-center border border-gray-300 rounded overflow-hidden w-[100px]">
+                                        <button type="button"
+                                                class="btn-minus px-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold h-8">
+                                            −
                                         </button>
-                                        <img src="http://localhost:5678@(item.Thumbnail)" class="w-16 h-16 object-contain" />
-                                        <span class="text-sm font-medium text-gray-800">@item.ProductName</span>
-                                    </td>
-                                    <td class="px-6 py-4 font-semibold text-gray-700">
-                                        @(item.Price.ToString("N0")) VNĐ
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center border border-gray-300 rounded overflow-hidden w-[100px]">
-                                            <button type="button" class="btn-minus px-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold h-8">−</button>
-                                            <input type="text" class="input-qty w-full text-center h-8 text-sm font-semibold border-x border-gray-300 focus:outline-none" value="@item.Quantity" readonly />
-                                            <button type="button" class="btn-plus px-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold h-8">+</button>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 font-bold text-gray-800">
-                                        @(item.SubTotal.ToString("N0")) VNĐ
-                                    </td>
-                                </tr>
-                            }
+                                        <input type="text"
+                                               class="input-qty w-full text-center h-8 text-sm font-semibold border-x border-gray-300 focus:outline-none"
+                                               value="@item.Quantity" readonly/>
+                                        <button type="button"
+                                                class="btn-plus px-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold h-8">
+                                            +
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-bold text-gray-800">
+                                    @((item.Price * item.Quantity).ToString("N0")) VNĐ
+                                </td>
+                            </tr>
                         }
-                        else
-                        {
-                            <tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">Giỏ hàng của bạn đang trống.</td></tr>
-                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">Giỏ hàng của bạn đang trống.
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
             </div>
 
             <div class="mt-6 flex justify-between">
-                <a href="/Catalog" class="border border-blue-600 text-blue-600 px-6 py-2 rounded text-sm font-semibold hover:bg-blue-50 transition">
+                <a href="/Catalog"
+                   class="border border-blue-600 text-blue-600 px-6 py-2 rounded text-sm font-semibold hover:bg-blue-50 transition">
                     &larr; RETURN TO SHOP
                 </a>
             </div>
@@ -68,28 +89,29 @@
         <div class="lg:w-1/3">
             <div class="border border-gray-200 rounded-lg p-6">
                 <h2 class="text-lg font-semibold text-gray-800 mb-6">Cart Totals</h2>
-                
+
                 <div class="flex justify-between mb-4 text-sm">
                     <span class="text-gray-500">Sub-total</span>
                     <span class="font-semibold text-gray-800">@(Model.SubTotal.ToString("N0")) VNĐ</span>
                 </div>
                 <div class="flex justify-between mb-4 text-sm">
                     <span class="text-gray-500">Shipping</span>
-                    <span class="font-semibold text-gray-800">@(Model.DeliveryFee.ToString("N0")) VNĐ</span> 
+                    <span class="font-semibold text-gray-800">@(Model.DeliveryFee.ToString("N0")) VNĐ</span>
                 </div>
-                
-                <hr class="mb-6 border-gray-200" />
-                
+
+                <hr class="mb-6 border-gray-200"/>
+
                 <div class="flex justify-between mb-6">
                     <span class="font-bold text-gray-800">Total</span>
                     <span class="font-bold text-blue-600 text-lg">@(Model.Total.ToString("N0")) VNĐ</span>
                 </div>
 
                 <!-- Nút màu primary -->
-                <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2">
-                    PROCEED TO CHECKOUT 
+                <a href="/Customer/Checkout"
+                   class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2 text-center">
+                    PROCEED TO CHECKOUT
                     <i class="bi bi-arrow-right"></i>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -98,8 +120,8 @@
 
 <script>
     function triggerCartUpdate() {
-        let updatePayload = { items: [] };
-        
+        let updatePayload = {items: []};
+
         document.querySelectorAll('.cart-item-row').forEach(row => {
             let cartItemId = row.getAttribute('data-cartitemid');
             let quantity = row.querySelector('.input-qty').value;
@@ -109,7 +131,7 @@
             });
         });
 
-        if(updatePayload.items.length === 0) return;
+        if (updatePayload.items.length === 0) return;
 
         let token = getCookie('jwtToken');
         if (!token) {
@@ -117,7 +139,7 @@
             return;
         }
 
-        fetch('http://localhost:5678/api/carts/update-cart', { 
+        fetch('http://localhost:5678/api/carts/update-cart', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -125,14 +147,14 @@
             },
             body: JSON.stringify(updatePayload)
         })
-        .then(res => {
-            if(res.ok) window.location.reload(); 
-            else showToast('Cập nhật thất bại!', 'error');
-        })
-        .catch(err => {
-            console.error(err);
-            showToast('Lỗi cập nhật giỏ hàng!', 'error');
-        });
+            .then(res => {
+                if (res.ok) window.location.reload();
+                else showToast('Cập nhật thất bại!', 'error');
+            })
+            .catch(err => {
+                console.error(err);
+                showToast('Lỗi cập nhật giỏ hàng!', 'error');
+            });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -140,7 +162,7 @@
             const btnMinus = row.querySelector('.btn-minus');
             const btnPlus = row.querySelector('.btn-plus');
             const inputQty = row.querySelector('.input-qty');
-            
+
             btnMinus.addEventListener('click', () => {
                 let val = parseInt(inputQty.value);
                 if (val > 1) {
@@ -154,9 +176,9 @@
             });
         });
     });
-    
-    window.removeCartItem = function(cartItemId) {
-        if(confirm("Bạn muốn xóa sản phẩm này?")) {
+
+    window.removeCartItem = function (cartItemId) {
+        if (confirm("Bạn muốn xóa sản phẩm này?")) {
             let token = getCookie('jwtToken');
             if (!token) return;
 
@@ -166,14 +188,14 @@
                     'Authorization': 'Bearer ' + token
                 }
             })
-            .then(res => {
-                if(res.ok) window.location.reload();
-                else showToast('Xóa thất bại!', 'error');
-            })
-            .catch(err => {
-                console.error(err);
-                showToast('Lỗi xóa sản phẩm!', 'error');
-            });
+                .then(res => {
+                    if (res.ok) window.location.reload();
+                    else showToast('Xóa thất bại!', 'error');
+                })
+                .catch(err => {
+                    console.error(err);
+                    showToast('Lỗi xóa sản phẩm!', 'error');
+                });
         }
     }
 </script>

@@ -34,6 +34,7 @@ namespace Ecommerce.API.Controllers
             var dto = new CustomerDto
             {
                 Username = user.UserName,
+                FullName = user.FullName,
                 Email = user.Email,
                 Phone = user.Phone,
                 Address = user.Address,
@@ -66,6 +67,7 @@ namespace Ecommerce.API.Controllers
                 }
                 user.Avatar = "/avatar/" + uniqueFileName;
             }
+            user.FullName = dto.FullName;
             user.Email = dto.Email;
             user.Phone = dto.Phone ?? string.Empty;
             user.Address = dto.Address;
