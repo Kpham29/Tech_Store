@@ -1,0 +1,542 @@
+@model Ecommerce.Web.Models.CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<!-- Breadcrumb -->
+<div class="max-w-screen-xl mx-auto px-6 pt-6 pb-2">
+    <div class="text-sm text-gray-500 font-medium">
+        <a href="/" class="hover:text-blue-600 transition">Home</a>
+        <span class="mx-2">|</span>
+        <span class="text-gray-800">Checkout</span>
+    </div>
+</div>
+
+<div class="max-w-screen-xl mx-auto px-6 pb-10">
+
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6">
+        Checkout
+    </h1>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+
+        <!-- ================= LEFT COLUMN ================= -->
+        <div class="lg:w-2/3 flex flex-col gap-6">
+
+            <!-- Customer Information -->
+            <div class="border border-gray-200 rounded-lg p-6">
+
+                <h2 class="text-lg font-semibold text-gray-800 mb-6">
+                    Customer Information
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                    <!-- Full Name -->
+                    <div>
+                        <label for="FullName"
+                               class="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name
+                        </label>
+
+                        <input type="text"
+                               id="FullName"
+                               value="@Model.UserProfile?.FullName"
+                               placeholder="Enter full name"
+                               class="w-full h-11 px-4 border border-gray-300 rounded-lg
+                                      text-sm text-gray-800
+                                      focus:outline-none focus:ring-2 focus:ring-blue-500
+                                      focus:border-blue-500 transition"/>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="Email"
+                               class="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address
+                        </label>
+
+                        <input type="email"
+                               id="Email"
+                               value="@Model.UserProfile?.Email"
+                               placeholder="Enter email address"
+                               class="w-full h-11 px-4 border border-gray-300 rounded-lg
+                                      text-sm text-gray-800
+                                      focus:outline-none focus:ring-2 focus:ring-blue-500
+                                      focus:border-blue-500 transition"/>
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label for="Phone"
+                               class="block text-sm font-medium text-gray-700 mb-2">
+                            Phone Number
+                        </label>
+
+                        <input type="text"
+                               id="Phone"
+                               value="@Model.UserProfile?.Phone"
+                               placeholder="Enter phone number"
+                               class="w-full h-11 px-4 border border-gray-300 rounded-lg
+                                      text-sm text-gray-800
+                                      focus:outline-none focus:ring-2 focus:ring-blue-500
+                                      focus:border-blue-500 transition"/>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="md:col-span-2">
+                        <label for="Address"
+                               class="block text-sm font-medium text-gray-700 mb-2">
+                            Shipping Address
+                        </label>
+
+                        <input type="text"
+                               id="Address"
+                               value="@Model.UserProfile?.Address"
+                               placeholder="Enter detailed shipping address"
+                               class="w-full h-11 px-4 border border-gray-300 rounded-lg
+                                      text-sm text-gray-800
+                                      focus:outline-none focus:ring-2 focus:ring-blue-500
+                                      focus:border-blue-500 transition"/>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Payment Method -->
+            <div class="border border-gray-200 rounded-lg p-6">
+
+                <h2 class="text-lg font-semibold text-gray-800 mb-6">
+                    Payment Method
+                </h2>
+
+                <div class="flex flex-col gap-3">
+                    <!-- Online Payment -->
+                    <label class="flex items-center justify-between
+                                  border border-gray-300 rounded-lg
+                                  px-4 py-4 cursor-pointer
+                                  hover:border-blue-400 hover:bg-blue-50/30
+                                  transition">
+
+                        <div class="flex items-center gap-4">
+
+                            <input type="radio"
+                                   name="PaymentMethod"
+                                   value="Online"
+                                   class="w-4 h-4 text-blue-600
+                                          focus:ring-blue-500"/>
+
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">
+                                    Online Payment
+                                </p>
+
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Pay securely using online payment
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <i class="bi bi-credit-card text-xl text-gray-500"></i>
+
+                    </label>
+
+                    <!-- COD -->
+                    <label class="flex items-center justify-between
+                                  border border-gray-300 rounded-lg
+                                  px-4 py-4 cursor-pointer
+                                  hover:border-blue-400 hover:bg-blue-50/30
+                                  transition">
+
+                        <div class="flex items-center gap-4">
+
+                            <input type="radio"
+                                   name="PaymentMethod"
+                                   value="COD"
+                                   checked
+                                   class="w-4 h-4 text-blue-600
+                                          focus:ring-blue-500"/>
+
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">
+                                    Cash On Delivery
+                                </p>
+
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Pay when your order is delivered
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <i class="bi bi-cash-coin text-xl text-gray-500"></i>
+
+                    </label>
+
+
+
+
+                </div>
+            </div>
+
+
+            <!-- Back to Cart -->
+            <div>
+                <a href="/Customer/Cart"
+                   class="inline-flex items-center gap-2
+                          border border-blue-600
+                          text-blue-600
+                          px-6 py-2.5
+                          rounded-lg
+                          text-sm font-semibold
+                          hover:bg-blue-50
+                          transition">
+
+                    <i class="bi bi-arrow-left"></i>
+                    RETURN TO CART
+
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT COLUMN ================= -->
+        <div class="lg:w-1/3">
+
+            <div class="border border-gray-200 rounded-lg p-6 sticky top-6">
+
+                <!-- Heading -->
+                <h2 class="text-lg font-semibold text-gray-800 mb-6">
+                    Order Summary
+                </h2>
+
+
+                <!-- Cart Items -->
+                <div class="divide-y divide-gray-200
+                            max-h-80 overflow-y-auto
+                            mb-5">
+
+                    @if (Model.CartItems != null && Model.CartItems.Count > 0)
+                    {
+                        foreach (var item in Model.CartItems)
+                        {
+                            <div class="py-4 flex items-center justify-between
+                                        cart-item-data"
+                                 data-productid="@item.ProductId"
+                                 data-quantity="@item.Quantity">
+
+                                <!-- Product -->
+                                <div class="flex items-center gap-3 min-w-0">
+
+                                    <div class="w-14 h-14 flex-shrink-0
+                                                border border-gray-200
+                                                rounded-lg bg-white
+                                                flex items-center justify-center">
+
+                                        <img src="http://localhost:5678@(item.Thumbnail)"
+                                             alt="@item.ProductName"
+                                             class="w-12 h-12 object-contain"/>
+
+                                    </div>
+
+                                    <div class="min-w-0">
+
+                                        <p class="text-sm font-medium
+                                                  text-gray-800 truncate">
+                                            @item.ProductName
+                                        </p>
+
+                                        <p class="text-xs text-gray-500 mt-1">
+                                            Quantity:
+                                            <span class="font-semibold text-gray-700">
+                                                @item.Quantity
+                                            </span>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Item subtotal -->
+                                <span class="text-sm font-semibold
+                                             text-gray-700 ml-4 whitespace-nowrap">
+
+                                    @((item.Price * item.Quantity).ToString("N0")) VNĐ
+
+                                </span>
+
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="py-8 text-center text-sm text-gray-500">
+                            Your cart is empty.
+                        </div>
+                    }
+
+                </div>
+
+
+                <!-- Subtotal -->
+                <div class="flex justify-between
+                            mb-4 text-sm">
+
+                    <span class="text-gray-500">
+                        Sub-total
+                    </span>
+
+                    <span class="font-semibold text-gray-800">
+                        @(Model.SubTotal.ToString("N0")) VNĐ
+                    </span>
+
+                </div>
+
+
+                <!-- Shipping -->
+                <div class="flex justify-between
+                            mb-5 text-sm">
+
+                    <span class="text-gray-500">
+                        Shipping
+                    </span>
+
+                    <span class="font-semibold text-gray-800">
+                        20,000 VNĐ
+                    </span>
+
+                </div>
+
+
+                <hr class="mb-5 border-gray-200"/>
+
+
+                <!-- Total -->
+                <div class="flex justify-between
+                            items-center mb-6">
+
+                    <span class="font-bold text-gray-800">
+                        Total
+                    </span>
+
+                    <span class="font-bold
+                                 text-blue-600
+                                 text-xl">
+
+                        @((Model.SubTotal + 20000).ToString("N0")) VNĐ
+
+                    </span>
+
+                </div>
+
+
+                <!-- Place Order -->
+                <button type="button"
+                        onclick="placeOrder()"
+                        id="btnPlaceOrder"
+                        class="w-full
+                               bg-blue-600
+                               text-white
+                               py-3
+                               rounded-lg
+                               font-semibold
+                               hover:bg-blue-700
+                               active:bg-blue-800
+                               transition
+                               flex items-center
+                               justify-center
+                               gap-2
+                               text-sm">
+
+                    PLACE ORDER
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function getCookie(name) {
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
+
+        if (parts.length === 2)
+            return parts.pop().split(";").shift();
+
+        return null;
+    }
+
+
+    function placeOrder() {
+
+        const phone = document.getElementById("Phone").value.trim();
+        const address = document.getElementById("Address").value.trim();
+
+        const paymentMethod =
+            document.querySelector(
+                'input[name="PaymentMethod"]:checked'
+            ).value;
+
+
+        // Validate
+        if (!phone || !address) {
+
+            alert("Please enter your phone number and shipping address!");
+
+            return;
+        }
+
+
+        // Get cart items
+        const items = [];
+
+        document
+            .querySelectorAll(".cart-item-data")
+            .forEach(row => {
+
+                items.push({
+
+                    productId:
+                        parseInt(
+                            row.getAttribute("data-productid")
+                        ),
+
+                    quantity:
+                        parseInt(
+                            row.getAttribute("data-quantity")
+                        )
+
+                });
+
+            });
+
+
+        const token = getCookie("jwtToken");
+
+
+        if (!token) {
+
+            window.location.href = "/Auth/Login";
+
+            return;
+        }
+
+
+        // Payload
+        const payload = {
+
+            shippingAddress: address,
+
+            shippingPhone: phone,
+
+            paymentMethod: paymentMethod,
+
+            items: items
+
+        };
+
+
+        const btn =
+            document.getElementById("btnPlaceOrder");
+
+
+        btn.innerHTML = `
+            <i class="bi bi-arrow-repeat animate-spin"></i>
+            PROCESSING...
+        `;
+
+        btn.disabled = true;
+
+        btn.classList.add("opacity-70", "cursor-not-allowed");
+
+
+        // API
+        fetch(
+            "http://localhost:5678/api/orders/checkout",
+            {
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json",
+
+                    "Authorization":
+                        "Bearer " + token
+
+                },
+
+                body:
+                    JSON.stringify(payload)
+
+            }
+        )
+
+            .then(res => res.json())
+
+            .then(data => {
+
+                if (data.success) {
+
+                    alert("Order placed successfully!");
+
+                    window.location.href = "/";
+
+                } else {
+
+                    alert("Failed to place order.");
+
+                    resetPlaceOrderButton();
+
+                }
+
+            })
+
+            .catch(err => {
+
+                console.error(err);
+
+                alert("Server connection error.");
+
+                resetPlaceOrderButton();
+
+            });
+
+    }
+
+
+    function resetPlaceOrderButton() {
+
+        const btn =
+            document.getElementById("btnPlaceOrder");
+
+
+        btn.innerHTML = `
+            PLACE ORDER
+            <i class="bi bi-arrow-right"></i>
+        `;
+
+        btn.disabled = false;
+
+        btn.classList.remove(
+            "opacity-70",
+            "cursor-not-allowed"
+        );
+
+    }
+
+</script>
+

@@ -179,7 +179,11 @@ public class CustomerController : Controller
         else
         {
             var cart = await _api.GetAsync<CartViewModel>("api/carts");
-            if(cart != null) model.CartItems = cart.CartItems;
+            if(cart != null) 
+            {
+                model.CartItems = cart.CartItems;
+                model.SubTotal = cart.SubTotal;
+            }
         }
 
         return View(model);

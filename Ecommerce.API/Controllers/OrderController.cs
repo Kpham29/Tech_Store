@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Ecommerce.API.Helpers;
 using Ecommerce.BusinessObject;
 using Ecommerce.BusinessObject.DTOs;
 using Ecommerce.BusinessObject.Enums;
@@ -63,13 +64,13 @@ namespace Ecommerce.API.Controllers
             {
                 OrderId = order.OrderId,
                 Method =  dto.PaymentMethod,
+                TransactionId = RandomTransaction.GenerateRandomTransaction(15),
                 Status = PaymentStatus.Pending
             };
             _context.Payments.Add(payment);
             
             await  _context.SaveChangesAsync();
             
-            // xu ly VNPay
             
             return Ok(new {success = true, orderId = order.OrderId});
         }

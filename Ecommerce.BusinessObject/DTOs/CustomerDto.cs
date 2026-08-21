@@ -5,6 +5,7 @@ namespace Ecommerce.BusinessObject.DTOs;
 public class CustomerDto
 {
     public string? Username  { get; set; }
+    public string? FullName  { get; set; }
     [Required] [EmailAddress] public string Email { get; set; } = null!;
     public string? Phone  { get; set; }
     public string? Address { get; set; }
