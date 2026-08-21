@@ -5,7 +5,7 @@ public class CartViewModel
     public int CartId  { get; set; }
     public int UserId  { get; set; }
     public List<CartItemViewModel> CartItems { get; set; } = new List<CartItemViewModel>();
-    public decimal SubTotal => CartItems.Sum(i => i.SubTotal);
+    public decimal SubTotal => CartItems.Sum(i => i.Quantity * i.Price);
     public decimal DeliveryFee  { get; set; }
     public decimal Total => SubTotal + DeliveryFee;
 }
@@ -19,5 +19,4 @@ public class CartItemViewModel
     public string Thumbnail { get; set; }
     public int Quantity  { get; set; }
     public decimal Price  { get; set; }
-    public decimal SubTotal => Price * Quantity;
 }

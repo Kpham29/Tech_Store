@@ -3,7 +3,14 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<div class="max-w-screen-xl mx-auto px-6 py-10">
+<div class="max-w-screen-xl mx-auto px-6 pt-6 pb-2">
+    <div class="text-sm text-gray-500 font-medium">
+        <a href="/" class="hover:text-blue-600 transition">Home</a>
+        <span class="mx-2">|</span>
+        <span class="text-gray-800">Cart</span>
+    </div>
+</div>
+<div class="max-w-screen-xl mx-auto px-6 pb-10">
     <div class="flex flex-col lg:flex-row gap-8">
         
         <!-- CỘT TRÁI -->
@@ -44,7 +51,7 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 font-bold text-gray-800">
-                                        @(item.SubTotal.ToString("N0")) VNĐ
+                                        @(item.Price * item.Quantity).ToString("N0")) VNĐ
                                     </td>
                                 </tr>
                             }
@@ -86,10 +93,10 @@
                 </div>
 
                 <!-- Nút màu primary -->
-                <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2">
+                <a href="/Customer/Checkout" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2 text-center">
                     PROCEED TO CHECKOUT 
                     <i class="bi bi-arrow-right"></i>
-                </button>
+                </a>
             </div>
         </div>
 

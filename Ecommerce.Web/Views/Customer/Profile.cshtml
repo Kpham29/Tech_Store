@@ -4,7 +4,14 @@
     var avatarUrl = string.IsNullOrEmpty(Model?.Avatar) ? "/images/default-avatar.png" : "http://localhost:5678" + Model.Avatar;
 }
 
-<div class="container mx-auto px-4 py-8 max-w-6xl flex gap-8">
+<div class="container mx-auto px-4 pt-6 pb-2 max-w-6xl">
+    <div class="text-sm text-gray-500 font-medium">
+        <a href="/" class="hover:text-blue-600 transition">Home</a>
+        <span class="mx-2">|</span>
+        <span class="text-gray-800">Profile</span>
+    </div>
+</div>
+<div class="container mx-auto px-4 pb-8 max-w-6xl flex gap-8">
     <!-- Sidebar -->
     <aside class="w-1/4">
         <div class="flex items-center gap-3 mb-6">

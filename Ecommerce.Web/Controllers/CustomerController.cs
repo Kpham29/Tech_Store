@@ -63,8 +63,18 @@ public class CustomerController : Controller
     }
     
     [HttpGet]
-    public IActionResult ChangePassword()
+    public async Task<IActionResult> ChangePassword()
     {
+        try 
+        {
+            var profile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
+            if (profile != null)
+            {
+                ViewBag.Avatar = profile.Avatar;
+                ViewBag.Username = profile.Username;
+            }
+        }
+        catch {}
         return View();
     }
 
@@ -73,6 +83,16 @@ public class CustomerController : Controller
     {
         if (!ModelState.IsValid)
         {
+            try 
+            {
+                var profile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
+                if (profile != null)
+                {
+                    ViewBag.Avatar = profile.Avatar;
+                    ViewBag.Username = profile.Username;
+                }
+            }
+            catch {}
             return View(model);
         }
 
@@ -86,11 +106,31 @@ public class CustomerController : Controller
             var result = await _api.PutMultipartAsync<object>("api/customer/change-password", content);
 
             ViewBag.Success = "Password changed successfully!";
+            try 
+            {
+                var profile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
+                if (profile != null)
+                {
+                    ViewBag.Avatar = profile.Avatar;
+                    ViewBag.Username = profile.Username;
+                }
+            }
+            catch {}
             return View(new ChangePasswordViewModel());
         }
         catch (Exception e)
         {
             ViewBag.Error = e.Message;
+            try 
+            {
+                var profile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
+                if (profile != null)
+                {
+                    ViewBag.Avatar = profile.Avatar;
+                    ViewBag.Username = profile.Username;
+                }
+            }
+            catch {}
             return View(model);
         }
     }
@@ -114,5 +154,34 @@ public class CustomerController : Controller
         {
             return RedirectToAction("Login", "Auth", new { message = "The session expired!" });
         }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Checkout(int? productId, int? quantity)
+    {
+        var model = new CheckoutViewModel();
+        model.UserProfile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
+
+        if (productId.HasValue && quantity.HasValue)
+        {
+            var pro = await _api.GetAsync<ProductDetailViewModel>($"api/products/{productId}");
+            model.CartItems.Add(new CartItemViewModel
+            {
+                ProductId = pro.ProductId,
+                ProductName = pro.ProductName,
+                Price = pro.Price,
+                Quantity = quantity.Value,
+                Thumbnail = pro.Thumbnail
+            });
+            model.SubTotal = model.CartItems.Sum(x => pro.Price * quantity.Value);
+            model.DirectBuyProductId = productId;
+        }
+        else
+        {
+            var cart = await _api.GetAsync<CartViewModel>("api/carts");
+            if(cart != null) model.CartItems = cart.CartItems;
+        }
+
+        return View(model);
     }
 }
