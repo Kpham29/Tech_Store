@@ -464,79 +464,53 @@
 
 
         // API
-        fetch(
-            "http://localhost:5678/api/orders/checkout",
-            {
-                method: "POST",
-
-                headers: {
-
-                    "Content-Type":
-                        "application/json",
-
-                    "Authorization":
-                        "Bearer " + token
-
-                },
-
-                body:
-                    JSON.stringify(payload)
-
-            }
-        )
-
+        fetch("http://localhost:5678/api/orders/checkout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(payload)
+        })
             .then(res => res.json())
-
             .then(data => {
-
                 if (data.success) {
 
-                    alert("Order placed successfully!");
-
-                    window.location.href = "/";
+                    if (paymentMethod === "Online" && data.qrUrl) {
+                        // Chuyển hướng sang trang Online Payment và truyền data qua Query String
+                        const payUrl = `/Customer/OnlinePayment?txn=${data.transactionId}&amount=${data.totalAmount}&url=${encodeURIComponent(data.qrUrl)}`;
+                        window.location.href = payUrl;
+                    } else {
+                        // Thanh toán COD
+                        alert("Order placed successfully!");
+                        window.location.href = "/";
+                    }
 
                 } else {
-
                     alert("Failed to place order.");
-
                     resetPlaceOrderButton();
-
                 }
-
             })
 
-            .catch(err => {
+        function resetPlaceOrderButton() {
 
-                console.error(err);
-
-                alert("Server connection error.");
-
-                resetPlaceOrderButton();
-
-            });
-
-    }
+            const btn =
+                document.getElementById("btnPlaceOrder");
 
 
-    function resetPlaceOrderButton() {
-
-        const btn =
-            document.getElementById("btnPlaceOrder");
-
-
-        btn.innerHTML = `
+            btn.innerHTML = `
             PLACE ORDER
             <i class="bi bi-arrow-right"></i>
         `;
 
-        btn.disabled = false;
+            btn.disabled = false;
 
-        btn.classList.remove(
-            "opacity-70",
-            "cursor-not-allowed"
-        );
+            btn.classList.remove(
+                "opacity-70",
+                "cursor-not-allowed"
+            );
 
+        }
     }
-
 </script>
 

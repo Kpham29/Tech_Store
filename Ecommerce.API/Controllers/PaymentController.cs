@@ -22,10 +22,10 @@ namespace Ecommerce.API.Controllers
             _client = client;
         }
 
-        [HttpGet("check-payment/{paymentId}")]
-        public async Task<IActionResult> CheckPayment(int paymentId)
+        [HttpGet("check-payment/{transactionId}")]
+        public async Task<IActionResult> CheckPayment(string transactionId)
         {
-            var payment = await _context.Payments.FirstOrDefaultAsync(p => p.PaymentId == paymentId);
+            var payment = await _context.Payments.FirstOrDefaultAsync(p => p.TransactionId == transactionId);
             if(payment == null) return NotFound();
             var order = await _context.Orders.FindAsync(payment.OrderId);
             if (payment.Status == PaymentStatus.Completed)
