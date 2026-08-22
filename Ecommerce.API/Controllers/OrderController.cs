@@ -16,10 +16,12 @@ namespace Ecommerce.API.Controllers
     public class OrderController : ControllerBase
     {
         private readonly EcommerceDbContext _context;
+        private readonly HttpClient  _httpClient;
         
-        public OrderController(EcommerceDbContext context)
+        public OrderController(EcommerceDbContext context, HttpClient httpClient)
         {
             _context = context;
+            _httpClient = httpClient;
         }
         
         [HttpPost("checkout")]
@@ -64,13 +66,26 @@ namespace Ecommerce.API.Controllers
             {
                 OrderId = order.OrderId,
                 Method =  dto.PaymentMethod,
-                TransactionId = RandomTransaction.GenerateRandomTransaction(15),
+                TransactionId = "TG" + RandomTransaction.GenerateRandomTransaction(13),
                 Status = PaymentStatus.Pending
             };
             _context.Payments.Add(payment);
             
             await  _context.SaveChangesAsync();
-            
+
+            if (dto.PaymentMethod.Contains("Online", StringComparison.OrdinalIgnoreCase))
+            {
+                string url = GetQrUrl.GetUrl(order.TotalAmount, payment.TransactionId);
+                return Ok(new
+                {
+                    success = true,
+                    orderId = order.OrderId,
+                    paymentId = payment.PaymentId,
+                    transactionId = payment.TransactionId,
+                    totalAmount = order.TotalAmount,
+                    qrUrl = url
+                });
+            }
             
             return Ok(new {success = true, orderId = order.OrderId});
         }
