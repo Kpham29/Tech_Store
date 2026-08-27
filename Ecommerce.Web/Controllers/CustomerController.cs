@@ -188,4 +188,20 @@ public class CustomerController : Controller
 
         return View(model);
     }
+
+    [HttpGet]
+    public IActionResult OnlinePayment(string txn, decimal amount, string url)
+    {
+        ViewBag.TransactionId = txn;
+        ViewBag.Amount = amount;
+        ViewBag.QrUrl = url;
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult PaymentSuccess(string txn)
+    {
+        ViewBag.TransactionId = txn;
+        return View();
+    }
 }

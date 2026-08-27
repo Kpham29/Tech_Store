@@ -1,0 +1,75 @@
+@{
+    ViewData["Title"] = "Online Payment";
+}
+
+<div class="max-w-screen-md mx-auto px-6 py-12">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 text-center relative">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Bank Transfer Payment</h2>
+        <p class="text-gray-600 mb-6">Please open your banking app and scan the VietQR code below</p>
+        
+        <!-- QR Code -->
+        <div class="flex justify-center mb-6">
+            <img src="@ViewBag.QrUrl" alt="VietQR" class="border-2 border-blue-100 rounded-xl p-3 w-64 h-64 object-contain shadow-sm" />
+        </div>
+        
+        <!-- Thông tin đơn -->
+        <div class="bg-blue-50 text-blue-900 rounded-lg p-5 mx-auto max-w-sm mb-6 text-left border border-blue-100">
+            <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium">Transaction ID:</span>
+                <span class="font-bold">@ViewBag.TransactionId</span>
+            </div>
+            <div class="flex justify-between border-t border-blue-200 pt-2">
+                <span class="text-sm font-medium mt-1">Amount:</span>
+                <span class="font-bold text-xl text-blue-700">@(((decimal)ViewBag.Amount).ToString("N0")) VNĐ</span>
+            </div>
+        </div>
+        
+        <!-- Countdown -->
+        <div class="inline-flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-full border border-gray-200">
+            <i class="bi bi-clock-history text-gray-500"></i>
+            <span class="text-gray-600 font-medium text-sm">Awaiting payment...</span>
+            <span id="timer-display" class="text-red-500 font-bold ml-1">01:30</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const transactionId = '@ViewBag.TransactionId';
+        let timer = 90; // 90 giây đếm ngược
+        const display = document.getElementById('timer-display');
+
+        // 1. Đếm ngược
+        const countdownInterval = setInterval(function () {
+            let minutes = parseInt(timer / 60, 10);
+            let seconds = parseInt(timer % 60, 10);
+            display.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+            if (--timer < 0) {
+                clearInterval(countdownInterval);
+                clearInterval(pollInterval);
+                alert("Payment time has expired. Please place a new order!");
+                window.location.href = '/Customer/Cart'; // Chuyển về giỏ hàng
+            }
+        }, 1000);
+
+        // 2. Polling kiểm tra trạng thái mỗi 5 giây
+        const pollInterval = setInterval(async () => {
+            try {
+                // Sửa port 7000 bằng đúng port của API đang chạy
+                const res = await fetch(`http://localhost:5678/api/payments/check-payment/${transactionId}`);
+                const data = await res.json();
+
+                if (data.success) {
+                    clearInterval(pollInterval);
+                    clearInterval(countdownInterval);
+                    
+                    alert("Transaction successful! Your order is being processed.");
+                    window.location.href = '/Customer/PaymentSuccess?txn=' + transactionId;
+                }
+            } catch (error) {
+                console.error("Lỗi polling:", error);
+            }
+        }, 5000);
+    });
+</script>
