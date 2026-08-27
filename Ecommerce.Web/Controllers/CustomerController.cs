@@ -197,4 +197,11 @@ public class CustomerController : Controller
         ViewBag.QrUrl = url;
         return View();
     }
+
+    [HttpGet]
+    public IActionResult PaymentSuccess(string txn)
+    {
+        ViewBag.TransactionId = txn;
+        return View();
+    }
 }

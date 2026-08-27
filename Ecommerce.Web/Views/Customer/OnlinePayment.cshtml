@@ -65,7 +65,7 @@
                     clearInterval(countdownInterval);
                     
                     alert("Transaction successful! Your order is being processed.");
-                    window.location.href = '/'; // Hoặc trang Order Success
+                    window.location.href = '/Customer/PaymentSuccess?txn=' + transactionId;
                 }
             } catch (error) {
                 console.error("Lỗi polling:", error);
