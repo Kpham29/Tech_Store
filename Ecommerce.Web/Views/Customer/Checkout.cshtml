@@ -477,11 +477,11 @@
                 if (data.success) {
 
                     if (paymentMethod === "Online" && data.qrUrl) {
-                        // Chuyển hướng sang trang Online Payment và truyền data qua Query String
+                        // Redirect to Online Payment page and pass data via Query String
                         const payUrl = `/Customer/OnlinePayment?txn=${data.transactionId}&amount=${data.totalAmount}&url=${encodeURIComponent(data.qrUrl)}`;
                         window.location.href = payUrl;
                     } else {
-                        // Thanh toán COD
+                        // COD Payment
                         alert("Order placed successfully!");
                         window.location.href = "/";
                     }

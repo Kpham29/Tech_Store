@@ -112,5 +112,27 @@ namespace Ecommerce.API.Controllers
 
             return Ok(new { success = true, orderId = order.OrderId });
         }
+
+        [HttpGet("customer-history")]
+        public async Task<IActionResult> GetCustomerOrderHistory([FromQuery] int pageIndex = 1,
+            [FromQuery] int pageSize = 10)
+        {
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdStr) || !int.TryParse(userIdStr, out int userId))
+                return Unauthorized();
+            var query = _context.Orders
+                .Where(o => o.UserId == userId)
+                .OrderByDescending(o => o.CreatedAt);
+            var selectedQuery = query.Select(o => new OrderHistoryDto
+            {
+                OrderId = o.OrderId,
+                TotalAmount = o.TotalAmount,
+                Status = o.Status,
+                CreatedAt = o.CreatedAt
+            });
+            
+            var data = await selectedQuery.ToPagedResultAsync(pageIndex, pageSize);
+            return Ok(data);
+        }
     }
 }
