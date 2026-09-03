@@ -41,7 +41,7 @@ namespace Ecommerce.Web.Controllers
             }
             catch (Exception ex)
             {
-                // Hiển thị chính xác thông báo lỗi từ API
+                // Show accurate error message from API
                 ViewBag.Error = ex.Message;
                 return View(model);
             }
@@ -79,12 +79,12 @@ namespace Ecommerce.Web.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 
-                ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không chính xác!";
+                ViewBag.Error = "Incorrect username or password!";
                 return View(model);
             }
             catch (Exception ex)
             {
-                // Hiển thị lỗi từ API: "Username is not found" hoặc "Password is wrong"
+                // Show error from API: "Username is not found" or "Password is wrong"
                 ViewBag.Error = ex.Message;
                 return View(model);
             }

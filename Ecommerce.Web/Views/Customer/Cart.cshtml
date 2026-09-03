@@ -69,7 +69,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">Giỏ hàng của bạn đang trống.
+                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">Your shopping cart is empty.
                             </td>
                         </tr>
                     }
@@ -149,11 +149,11 @@
         })
             .then(res => {
                 if (res.ok) window.location.reload();
-                else showToast('Cập nhật thất bại!', 'error');
+                else showToast('Update failed!', 'error');
             })
             .catch(err => {
                 console.error(err);
-                showToast('Lỗi cập nhật giỏ hàng!', 'error');
+                showToast('Error updating cart!', 'error');
             });
     }
 
@@ -178,7 +178,7 @@
     });
 
     window.removeCartItem = function (cartItemId) {
-        if (confirm("Bạn muốn xóa sản phẩm này?")) {
+        if (confirm("Do you want to remove this product?")) {
             let token = getCookie('jwtToken');
             if (!token) return;
 
@@ -190,11 +190,11 @@
             })
                 .then(res => {
                     if (res.ok) window.location.reload();
-                    else showToast('Xóa thất bại!', 'error');
+                    else showToast('Removal failed!', 'error');
                 })
                 .catch(err => {
                     console.error(err);
-                    showToast('Lỗi xóa sản phẩm!', 'error');
+                    showToast('Error removing product!', 'error');
                 });
         }
     }

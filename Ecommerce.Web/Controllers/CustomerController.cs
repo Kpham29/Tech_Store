@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using Ecommerce.BusinessObject.Helpers;
 using Ecommerce.Web.Helper;
 using Ecommerce.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ public class CustomerController : Controller
         var profile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
         if (profile == null)
         {
-            ViewBag.Error = "Phiên đăng nhập đã hết hạn hoặc không thể tải dữ liệu.";
+            ViewBag.Error = "Session expired or data could not be loaded.";
             return RedirectToAction("Login", "Auth");
         }
         return View(profile);
@@ -203,5 +204,35 @@ public class CustomerController : Controller
     {
         ViewBag.TransactionId = txn;
         return View();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> OrderHistory(int pageIndex = 1, int pageSize = 10)
+    {
+        var token = Request.Cookies["jwtToken"];
+        if (string.IsNullOrEmpty(token)) return RedirectToAction("Login", "Auth", new { message = "You have not logged in yet" });
+        try
+        {
+            try 
+            {
+                var profile = await _api.GetAsync<CustomerProfileViewModel>("api/customer/profile");
+                if (profile != null)
+                {
+                    ViewBag.Avatar = profile.Avatar;
+                    ViewBag.Username = profile.Username;
+                }
+            }
+            catch {}
+
+            var url = $"api/order/customer-history?pageIndex={pageIndex}&pageSize={pageSize}";
+            var pageResult = await _api.GetAsync<PagedResult<OrderHistoryViewModel>>(url);
+            if (pageResult == null)
+                pageResult = new PagedResult<OrderHistoryViewModel>();
+            return View(pageResult);
+        }
+        catch (Exception e)
+        {
+            return RedirectToAction("Login", "Auth", new { message = "Session expired or an error occurred!" });
+        }
     }
 }
