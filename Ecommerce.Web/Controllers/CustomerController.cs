@@ -39,7 +39,7 @@ public class CustomerController : Controller
         try
         {
             using var content = new MultipartFormDataContent();
-            content.Add(new StringContent(profile.Email ?? ""), "Email");
+            content.Add(new StringContent(profile.FullName ?? ""), "FullName");
             content.Add(new StringContent(profile.Phone ?? ""), "Phone");
             content.Add(new StringContent(profile.Address ?? ""), "Address");
 
