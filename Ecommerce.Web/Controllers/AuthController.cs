@@ -76,6 +76,15 @@ namespace Ecommerce.Web.Controllers
                         Response.Cookies.Append("avatar", result.Avatar);
                     }
                     
+                    if (result.Role == "Admin")
+                    {
+                        return RedirectToAction("Dashboard", "Admin");
+                    }
+                    else if (result.Role == "Staff")
+                    {
+                        return RedirectToAction("Dashboard", "Staff");
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
                 

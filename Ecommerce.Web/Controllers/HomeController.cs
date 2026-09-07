@@ -17,6 +17,10 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
+        var role = HttpContext.Request.Cookies["role"];
+        if (role == "Admin") return RedirectToAction("Dashboard", "Admin");
+        if (role == "Staff") return RedirectToAction("Dashboard", "Staff");
+
         var taskNews = _api.GetAsync<PagedResult<ProductViewModel>>("api/products/filter?isNew=true&pageSize=6");
         var taskLaptops = _api.GetAsync<PagedResult<ProductViewModel>>("api/products/filter?categoryId=1&pageSize=5");
         var taskMsi = _api.GetAsync<PagedResult<ProductViewModel>>("api/products/filter?brandId=3&pageSize=5");

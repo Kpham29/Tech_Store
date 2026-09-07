@@ -68,7 +68,6 @@ namespace Ecommerce.API.Controllers
                 user.Avatar = "/avatar/" + uniqueFileName;
             }
             user.FullName = dto.FullName;
-            user.Email = dto.Email;
             user.Phone = dto.Phone ?? string.Empty;
             user.Address = dto.Address;
             await _context.SaveChangesAsync();
