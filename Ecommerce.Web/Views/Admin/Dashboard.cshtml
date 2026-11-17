@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_AdminLayout";
+}
+
+<div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+    <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+            <i class="bi bi-shield-lock-fill text-xl"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800">Welcome to Admin Dashboard</h2>
+    </div>
+    
+    <p class="text-gray-600 leading-relaxed mb-6">
+        Here you can view the system overview, manage products, users, categories, brands, and monitor all reports.
+        As an <strong class="text-gray-800">Administrator</strong>, you have full access to all system capabilities.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+        <div class="p-4 rounded-xl border border-gray-200 bg-gray-50 flex flex-col gap-2">
+            <span class="text-gray-500 text-sm font-medium uppercase tracking-wide">Total Users</span>
+            <span class="text-3xl font-bold text-gray-800">1,248</span>
+        </div>
+        <div class="p-4 rounded-xl border border-gray-200 bg-gray-50 flex flex-col gap-2">
+            <span class="text-gray-500 text-sm font-medium uppercase tracking-wide">Total Products</span>
+            <span class="text-3xl font-bold text-gray-800">356</span>
+        </div>
+        <div class="p-4 rounded-xl border border-gray-200 bg-gray-50 flex flex-col gap-2">
+            <span class="text-gray-500 text-sm font-medium uppercase tracking-wide">Pending Orders</span>
+            <span class="text-3xl font-bold text-orange-600">24</span>
+        </div>
+        <div class="p-4 rounded-xl border border-gray-200 bg-gray-50 flex flex-col gap-2">
+            <span class="text-gray-500 text-sm font-medium uppercase tracking-wide">Revenue (Month)</span>
+            <span class="text-3xl font-bold text-green-600">$45.2k</span>
+        </div>
+    </div>
+</div>
